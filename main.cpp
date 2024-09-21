@@ -17,11 +17,12 @@ int main(){
         clean(laikinasStud);
     }
 
+    std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
     for (int i=0; i<studSk; i++){
         output(studentai.at(i));
     }
     
-    output(laikinasStud);
 
     return 0;
 }

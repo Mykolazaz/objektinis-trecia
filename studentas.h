@@ -6,10 +6,10 @@
 struct Studentas{
     std::string vardas;
     std::string pavarde;
-    int tarpRezSk;
-    std::vector<int> tarpRez;
-    int egzamRez;
-    int vidurkis, mediana;
+    float tarpRezSk;
+    std::vector<float> tarpRez;
+    float egzamRez;
+    float vidurkis, mediana;
 };
 
 void input(Studentas &Lok);

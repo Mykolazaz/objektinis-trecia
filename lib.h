@@ -4,5 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include <numeric>
 
 #endif

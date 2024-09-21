@@ -20,7 +20,7 @@ void input(Studentas &Lok){
 }
 
 void output(Studentas Lok){
-    std::cout << Lok.vardas << " " << Lok.pavarde << " " << Lok.egzamRez << " " << Lok.tarpRez.size() << std::endl;
+    std::cout << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(3) << (std::accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), decltype(Lok.tarpRez)::value_type(0))+Lok.egzamRez)/(Lok.tarpRez.size() + 1) << std::endl;
 }
 
 void clean(Studentas &Lok){
