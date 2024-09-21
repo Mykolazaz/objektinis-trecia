@@ -1,7 +1,7 @@
 #include "lib.h"
 #include "studentas.h"
 
-double mediana(std::vector<double> &v){
+double mediana(std::vector<int> &v){
     size_t n = v.size();
     std::sort(v.begin(), v.end());
     if (n % 2 == 0) {
@@ -12,31 +12,44 @@ double mediana(std::vector<double> &v){
 }
 
 void input(Studentas &Lok){
-    int input;
+    std::string input;
+    bool praeitasBuvoTuscias = false;
 
-    std::cout << "Įveskite studento vardą, pavardę, tarpinių rezultatų sk. ir egz. įvertinimą: " << std::endl;
-    std::cin >> Lok.vardas >> Lok.pavarde >> Lok.tarpRezSk >> Lok.egzamRez;
-    std::cout << "Dabar įveskite šio studento tarpinių įvetinimų rezultatus per 'space' (-1 sustabdo vedimą): " << std::endl;
-    
-    while(std::cin >> input) { 
-        if(input < 0) { 
-            break; 
-        } 
-        Lok.tarpRez.push_back(input); 
-    
+    std::cout << "Įveskite studento vardą, pavardę ir egzamino įvertinimą:" << std::endl;
+    std::cin >> Lok.vardas >> Lok.pavarde >> Lok.egzamRez;
+    std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+
+    while (true) {
+        std::getline(std::cin, input);
+
+        if (input.empty()) {
+            if (praeitasBuvoTuscias) {
+                break;
+            }
+            praeitasBuvoTuscias = true;
+        } else {
+            praeitasBuvoTuscias = false;
+
+            std::stringstream ss(input);
+            int skaicius;
+            
+            while (ss >> skaicius) {
+                Lok.tarpRez.push_back(skaicius);
+            }
+        }
     }
 }
 
 void output(Studentas Lok, int vidMed){
     if(vidMed == 0){
-        double vidurkis = (std::accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), decltype(Lok.tarpRez)::value_type(0))+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
+        double vidurkis = (std::accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
         vidurkis << std::endl;
     } else {
-        std::vector<double> temp = Lok.tarpRez;
-        temp.push_back(Lok.egzamRez);
-        double med = mediana(temp);
+        std::vector<int> visiRez = Lok.tarpRez;
+        visiRez.push_back(Lok.egzamRez);
+        double med = mediana(visiRez);
 
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<

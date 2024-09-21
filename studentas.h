@@ -6,9 +6,8 @@
 struct Studentas{
     std::string vardas;
     std::string pavarde;
-    double tarpRezSk;
-    std::vector<double> tarpRez;
-    double egzamRez;
+    std::vector<int> tarpRez;
+    int egzamRez;
     double vidurkis, mediana;
 };
 

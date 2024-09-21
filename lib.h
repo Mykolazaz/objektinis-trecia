@@ -5,5 +5,6 @@
 #include <vector>
 #include <iomanip>
 #include <numeric>
+#include <sstream>
 
 #endif
