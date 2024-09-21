@@ -6,14 +6,14 @@
 struct Studentas{
     std::string vardas;
     std::string pavarde;
-    float tarpRezSk;
-    std::vector<float> tarpRez;
-    float egzamRez;
-    float vidurkis, mediana;
+    double tarpRezSk;
+    std::vector<double> tarpRez;
+    double egzamRez;
+    double vidurkis, mediana;
 };
 
 void input(Studentas &Lok);
-void output(Studentas Lok);
+void output(Studentas Lok, int vidMed);
 void clean(Studentas &Lok);
 
 #endif
