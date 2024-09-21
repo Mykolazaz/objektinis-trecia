@@ -12,32 +12,49 @@ double mediana(std::vector<int> &v){
 }
 
 void input(Studentas &Lok){
+    int arRandom;
     std::string input;
     bool praeitasBuvoTuscias = false;
 
-    std::cout << "Įveskite studento vardą, pavardę ir egzamino įvertinimą:" << std::endl;
-    std::cin >> Lok.vardas >> Lok.pavarde >> Lok.egzamRez;
-    std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+    std::cout << "Ar norite atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << std::endl;
+    std::cin >> arRandom;
 
-    while (true) {
-        std::getline(std::cin, input);
+    std::cout << "Įveskite studento vardą ir pavardę:" << std::endl;
+    std::cin >> Lok.vardas >> Lok.pavarde;
+    
+    if (arRandom == 0){
+        std::cout << "Įveskite egzamino rezultatą: " << std::endl;
+        std::cin >> Lok.egzamRez;
+        std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
 
-        if (input.empty()) {
-            if (praeitasBuvoTuscias) {
-                break;
-            }
-            praeitasBuvoTuscias = true;
-        } else {
-            praeitasBuvoTuscias = false;
+        while (true) {
+            std::getline(std::cin, input);
 
-            std::stringstream ss(input);
-            int skaicius;
-            
-            while (ss >> skaicius) {
-                Lok.tarpRez.push_back(skaicius);
+            if (input.empty()) {
+                if (praeitasBuvoTuscias) {
+                    break;
+                }
+                praeitasBuvoTuscias = true;
+            } else {
+                praeitasBuvoTuscias = false;
+
+                std::stringstream ss(input);
+                int skaicius;
+                
+                while (ss >> skaicius) {
+                    Lok.tarpRez.push_back(skaicius);
+                }
             }
         }
+    } else {
+        std::srand(std::time(0));
+        Lok.egzamRez = rand() % 10 + 1;
+        for (int i = 0; i < 5; i++){
+            std::srand(std::time(0));
+            Lok.tarpRez.push_back(rand() % 10 + 1);
+        }
     }
+    
 }
 
 void output(Studentas Lok, int vidMed){
