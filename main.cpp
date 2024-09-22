@@ -22,10 +22,15 @@ int main(){
     std::cin >> ivedSkait;
 
     if (ivedSkait == 1){
-        inputScan(laikinasStud);
-        studentai.push_back(laikinasStud);
-        clean(laikinasStud);
-        std::cout << "Duomenys buvo sėkmingai išsaugoti." << std::endl;
+        inputScan(studentai);
+
+        std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+        std::cout << "---------------------------------------------------------------------------" << std::endl;
+
+        for (const auto &stud : studentai) {
+            outputScan(stud);
+        }
+
         exit(EXIT_SUCCESS);
     }
 
@@ -49,7 +54,7 @@ int main(){
     }
     
     for (int i=0; i<studSk; i++){
-        output(studentai.at(i), vidMed);
+        outputManual(studentai.at(i), vidMed);
     }
     
     return 0;

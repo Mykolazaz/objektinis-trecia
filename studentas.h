@@ -13,8 +13,10 @@ struct Studentas{
 };
 
 void inputManual(Studentas &Lok);
-void inputScan(Studentas &Lok);
-void output(Studentas Lok, int vidMed);
+// void inputScan(Studentas &Lok);
+void inputScan(std::vector<Studentas> &studentai);
+void outputManual(Studentas Lok, int vidMed);
+void outputScan(Studentas Lok);
 void clean(Studentas &Lok);
 void generate(int studGenSk, int ndGenSk);
 

@@ -56,28 +56,40 @@ void inputManual(Studentas &Lok){
     
 }
 
-void inputScan(Studentas &Lok){
+void inputScan(std::vector<Studentas> &studentai) {
     std::ifstream fr("kursiokai.txt");
     std::string eilute;
-    
+
+    std::getline(fr, eilute);
+
     while (std::getline(fr, eilute)) {
-        fr >> Lok.pavarde >> Lok.vardas;
+        std::istringstream iss(eilute);
+        Studentas Lok;
+
+        iss >> Lok.pavarde >> Lok.vardas;
 
         int balas;
-        while(fr >> balas){
+        while (iss >> balas) {
             Lok.balai.push_back(balas);
         }
 
-        Lok.egzamRez = Lok.balai[Lok.balai.size() - 1];
-        Lok.balai.pop_back();
+        if (!Lok.balai.empty()) {
+            Lok.egzamRez = Lok.balai.back();
+            Lok.balai.pop_back();
+            Lok.tarpRez = Lok.balai;
+        }
+
+        studentai.push_back(Lok);
     }
 
     fr.close();
 }
 
-void output(Studentas Lok, int vidMed){
+
+void outputManual(Studentas Lok, int vidMed){
     if(vidMed == 0){
         double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
+
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
         vidurkis << std::endl;
@@ -91,6 +103,18 @@ void output(Studentas Lok, int vidMed){
         med << std::endl;
     }
     
+}
+
+void outputScan(Studentas Lok){
+    double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
+
+    std::vector<int> visiRez = Lok.tarpRez;
+    visiRez.push_back(Lok.egzamRez);
+    double med = mediana(visiRez);
+
+    std::cout << std::left << std::setw(20) << Lok.pavarde
+    << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
+    vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
 }
 
 void clean(Studentas &Lok){
