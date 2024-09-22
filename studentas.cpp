@@ -107,7 +107,7 @@ void outputManual(Studentas Lok, int vidMed){
 }
 
 void outputScan(std::vector<Studentas> &studentai){
-    
+
     std::sort(studentai.begin(), studentai.end(), 
               [](const Studentas &a, const Studentas &b) {
                   return a.pavarde < b.pavarde;
@@ -120,9 +120,10 @@ void outputScan(std::vector<Studentas> &studentai){
         visiRez.push_back(stud.egzamRez);
         double med = mediana(visiRez);
 
-        std::cout << std::left << std::setw(20) << stud.pavarde
-        << std::setw(20) << stud.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
-        vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+        std::cout << std::left << std::setw(20) << stud.pavarde;
+        std::cout << std::left << std::setw(20) << stud.vardas;
+        std::cout << std::left << std::setw(20) << std::setprecision(2) << std::fixed <<
+        vidurkis << std::left << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
     }
 }
 
