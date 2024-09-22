@@ -79,3 +79,21 @@ void clean(Studentas &Lok){
     Lok.pavarde.clear();
     Lok.tarpRez.clear();
 }
+
+void generate(){
+    std::ofstream fw("kursiokai.txt");
+
+    fw << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas";
+    for (int i = 0; i < 5; i++){
+        fw << "ND" << i << std::setw(5) << " ";
+    }
+    fw << std::setw(20) << "Egzaminimas" << std::endl;
+    
+    for (int i = 0; i < 5; i++){
+        fw << std::left << std::setw(20) << "Pavardė" << i << std::setw(20) << "Vardas" << i;
+        for (int i = 0; i < 6; i++){
+            fw << i << std::setw(5) << " ";
+        }
+    }
+    fw.close();
+}
