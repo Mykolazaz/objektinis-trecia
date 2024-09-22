@@ -114,15 +114,28 @@ void outputScan(std::vector<Studentas> &studentai){
               });
     
     for (const auto &stud : studentai){
-        double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
+        try{
 
-        std::vector<int> visiRez = stud.tarpRez;
-        visiRez.push_back(stud.egzamRez);
-        double med = mediana(visiRez);
+            if (stud.tarpRez.empty()) {
+                throw std::runtime_error("Nėra tarpinių rezultatų studentui: " + stud.vardas + " " + stud.pavarde);
+            }
 
-        std::cout << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-        vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+            double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
+
+            std::vector<int> visiRez = stud.tarpRez;
+            visiRez.push_back(stud.egzamRez);
+            double med = mediana(visiRez);
+
+            std::cout << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+        }
+        catch (const std::exception& e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+        }
     }
+
+    
 }
 
 void clean(Studentas &Lok){

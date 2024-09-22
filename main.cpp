@@ -7,9 +7,19 @@ int main(){
     Studentas laikinasStud;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait;
-
-    std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
-    std::cin >> ivedGener;
+    
+    try{
+        std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
+        std::cin >> ivedGener;
+    
+        if (ivedGener != 0 && ivedGener != 1){
+            throw std::runtime_error("Įrašytas netinkamas simbolis!");
+        }
+    }
+    catch (const std::exception& e) {
+        std::cerr << "ERROR:" << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
     if (ivedGener == 1){
         std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << std::endl;
