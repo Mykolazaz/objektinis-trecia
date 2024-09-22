@@ -110,7 +110,7 @@ void outputScan(std::vector<Studentas> &studentai){
 
     std::sort(studentai.begin(), studentai.end(), 
               [](const Studentas &a, const Studentas &b) {
-                  return a.pavarde < b.pavarde;
+                  return a.pavarde.compare(b.pavarde);
               });
     
     for (const auto &stud : studentai){
