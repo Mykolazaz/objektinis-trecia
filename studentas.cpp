@@ -110,7 +110,7 @@ void outputScan(std::vector<Studentas> &studentai){
 
     std::sort(studentai.begin(), studentai.end(), 
               [](const Studentas &a, const Studentas &b) {
-                  return a.pavarde.compare(b.pavarde);
+                  return a.pavarde < b.pavarde;
               });
     
     for (const auto &stud : studentai){
@@ -120,10 +120,8 @@ void outputScan(std::vector<Studentas> &studentai){
         visiRez.push_back(stud.egzamRez);
         double med = mediana(visiRez);
 
-        std::cout << std::left << std::setw(20) << stud.pavarde;
-        std::cout << std::left << std::setw(20) << stud.vardas;
-        std::cout << std::left << std::setw(20) << std::setprecision(2) << std::fixed <<
-        vidurkis << std::left << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+        std::cout << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+        vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
     }
 }
 
@@ -132,28 +130,4 @@ void clean(Studentas &Lok){
     Lok.pavarde.clear();
     Lok.tarpRez.clear();
     Lok.balai.clear();
-}
-
-void generate(int studGenSk, int ndGenSk){
-    std::ofstream fw("kursiokai.txt");
-
-    studGenSk += 1;
-    ndGenSk += 1;
-
-    fw << std::left << std::setw(15) << std::setfill(' ') << "Pavardė"
-    << std::setw(15) << std::setfill(' ') << "Vardas";
-    for (int i = 1; i < ndGenSk; i++){
-        fw << "ND" << std::setw(2) << std::left << i << " ";
-    }
-    fw << std::setw(10) << "Egzaminimas" << std::endl;
-    
-    for (int i = 1; i < studGenSk; i++){
-        fw << std::left << std::setw(15) << ("Pavardė"+std::to_string(i))
-        << std::setw(15) << ("Vardas"+std::to_string(i));
-        for (int j = 1; j < ndGenSk; j++){
-            fw << std::setw(5) << rand() % 10 + 1;    
-        }
-        fw << std::setw(10) << rand() % 10 + 1 << std::endl;
-    }
-    fw.close();
 }
