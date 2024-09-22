@@ -6,13 +6,15 @@ int main(){
     std::vector<Studentas> studentai;
     Studentas laikinasStud;
 
-    int studSk, vidMed, ivedGener;
+    int studSk, vidMed, ivedGener, studGenSk, ndGenSk;
 
     std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
     std::cin >> ivedGener;
 
     if (ivedGener == 1){
-        generate();
+        std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << std::endl;
+        std::cin >> studGenSk >> ndGenSk;
+        generate(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
     }
 

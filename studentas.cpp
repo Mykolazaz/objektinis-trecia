@@ -80,20 +80,27 @@ void clean(Studentas &Lok){
     Lok.tarpRez.clear();
 }
 
-void generate(){
+void generate(int studGenSk, int ndGenSk){
     std::ofstream fw("kursiokai.txt");
 
-    fw << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas";
-    for (int i = 0; i < 5; i++){
-        fw << "ND" << i << std::setw(5) << " ";
+    studGenSk += 1;
+    ndGenSk += 1;
+    int ndIvertSk = ndGenSk + 1;
+
+    fw << std::left << std::setw(15) << std::setfill(' ') << "Pavardė"
+    << std::setw(15) << std::setfill(' ') << "Vardas";
+    for (int i = 1; i < ndGenSk; i++){
+        fw << "ND" << i << std::setw(3) << " ";
     }
     fw << std::setw(20) << "Egzaminimas" << std::endl;
     
-    for (int i = 0; i < 5; i++){
-        fw << std::left << std::setw(20) << "Pavardė" << i << std::setw(20) << "Vardas" << i;
-        for (int i = 0; i < 6; i++){
-            fw << i << std::setw(5) << " ";
+    for (int i = 1; i < studGenSk; i++){
+        fw << std::left << std::setw(15) << ("Pavardė"+std::to_string(i))
+        << std::setw(15) << ("Vardas"+std::to_string(i));
+        for (int j = 1; j < ndIvertSk; j++){
+            fw << std::setw(5) << rand() % 10 + 1;    
         }
+        fw << std::setw(15) << rand() % 10 + 1 << std::endl;
     }
     fw.close();
 }
