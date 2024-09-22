@@ -87,6 +87,7 @@ void inputScan(std::vector<Studentas> &studentai) {
 
 
 void outputManual(Studentas Lok, int vidMed){
+    
     if(vidMed == 0){
         double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
 
@@ -105,16 +106,24 @@ void outputManual(Studentas Lok, int vidMed){
     
 }
 
-void outputScan(Studentas Lok){
-    double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
+void outputScan(std::vector<Studentas> &studentai){
+    
+    std::sort(studentai.begin(), studentai.end(), 
+              [](const Studentas &a, const Studentas &b) {
+                  return a.pavarde < b.pavarde;
+              });
+    
+    for (const auto &stud : studentai){
+        double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
 
-    std::vector<int> visiRez = Lok.tarpRez;
-    visiRez.push_back(Lok.egzamRez);
-    double med = mediana(visiRez);
+        std::vector<int> visiRez = stud.tarpRez;
+        visiRez.push_back(stud.egzamRez);
+        double med = mediana(visiRez);
 
-    std::cout << std::left << std::setw(20) << Lok.pavarde
-    << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
-    vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+        std::cout << std::left << std::setw(20) << stud.pavarde
+        << std::setw(20) << stud.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
+        vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+    }
 }
 
 void clean(Studentas &Lok){

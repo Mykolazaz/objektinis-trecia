@@ -27,9 +27,7 @@ int main(){
         std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
         std::cout << "---------------------------------------------------------------------------" << std::endl;
 
-        for (const auto &stud : studentai) {
-            outputScan(stud);
-        }
+        outputScan(studentai);
 
         exit(EXIT_SUCCESS);
     }
