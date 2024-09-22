@@ -11,7 +11,7 @@ double mediana(std::vector<int> &v){
     }
 }
 
-void input(Studentas &Lok){
+void inputManual(Studentas &Lok){
     int arRandom;
     std::string input;
     bool praeitasBuvoTuscias = false;
@@ -56,6 +56,25 @@ void input(Studentas &Lok){
     
 }
 
+void inputScan(Studentas &Lok){
+    std::ifstream fr("kursiokai.txt");
+    std::string eilute;
+    
+    while (std::getline(fr, eilute)) {
+        fr >> Lok.pavarde >> Lok.vardas;
+
+        int balas;
+        while(fr >> balas){
+            Lok.balai.push_back(balas);
+        }
+
+        Lok.egzamRez = Lok.balai[Lok.balai.size() - 1];
+        Lok.balai.pop_back();
+    }
+
+    fr.close();
+}
+
 void output(Studentas Lok, int vidMed){
     if(vidMed == 0){
         double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
@@ -78,6 +97,7 @@ void clean(Studentas &Lok){
     Lok.vardas.clear();
     Lok.pavarde.clear();
     Lok.tarpRez.clear();
+    Lok.balai.clear();
 }
 
 void generate(int studGenSk, int ndGenSk){

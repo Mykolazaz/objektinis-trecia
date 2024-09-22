@@ -6,7 +6,7 @@ int main(){
     std::vector<Studentas> studentai;
     Studentas laikinasStud;
 
-    int studSk, vidMed, ivedGener, studGenSk, ndGenSk;
+    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait;
 
     std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
     std::cin >> ivedGener;
@@ -18,13 +18,24 @@ int main(){
         exit(EXIT_SUCCESS);
     }
 
+    std::cout << "Duomenis įvesti rankomis (0) ar nuskaityti failą (1)?:" << std::endl;
+    std::cin >> ivedSkait;
+
+    if (ivedSkait == 1){
+        inputScan(laikinasStud);
+        studentai.push_back(laikinasStud);
+        clean(laikinasStud);
+        std::cout << "Duomenys buvo sėkmingai išsaugoti." << std::endl;
+        exit(EXIT_SUCCESS);
+    }
+
     std::cout << "Apie kiek studentų pildysite informaciją?:" << std::endl;
     std::cin >> studSk;
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 
     for (int i=0; i<studSk; i++){
-        input(laikinasStud);
+        inputManual(laikinasStud);
         studentai.push_back(laikinasStud);
         clean(laikinasStud);
     }
