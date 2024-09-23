@@ -20,10 +20,10 @@ int main(){
     }
 
     if (vidMed == 0){
-        std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::endl;
+        std::cout << std::left << std::setw(21) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::endl;
         std::cout << "-------------------------------------------------------" << std::endl;
     } else {
-        std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+        std::cout << std::left << std::setw(21) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << std::endl;
         std::cout << "-------------------------------------------------------" << std::endl;
     }
     
