@@ -28,7 +28,7 @@ int main(){
         exit(EXIT_SUCCESS);
     }
 
-    std::cout << "Duomenis įvesti rankomis (0) ar nuskaityti failą (1)?:" << std::endl;
+    std::cout << "Duomenis įvesti rankomis (0) ar nuskaityti failą ir išvesti sulygiuotą (1)?:" << std::endl;
     std::cin >> ivedSkait;
 
     if (ivedSkait == 1){

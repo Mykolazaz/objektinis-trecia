@@ -113,13 +113,15 @@ void outputScan(std::vector<Studentas> &studentai){
                   return a.pavarde < b.pavarde;
               });
     
-    for (const auto &stud : studentai){
-        try{
+    std::ofstream fw("kursiokai_bendra.txt");
 
+    for (const auto &stud : studentai){
+        try {
             if (stud.tarpRez.empty()) {
                 throw std::runtime_error("Nėra tarpinių rezultatų studentui: " + stud.vardas + " " + stud.pavarde);
             }
 
+            
             double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
 
             std::vector<int> visiRez = stud.tarpRez;
@@ -128,6 +130,9 @@ void outputScan(std::vector<Studentas> &studentai){
 
             std::cout << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
             vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+
+            fw << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
         }
         catch (const std::exception& e) {
         std::cerr << "ERROR: " << e.what() << std::endl;
@@ -135,7 +140,7 @@ void outputScan(std::vector<Studentas> &studentai){
         }
     }
 
-    
+    fw.close();
 }
 
 void clean(Studentas &Lok){
