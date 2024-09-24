@@ -12,8 +12,8 @@ int main(){
         std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
         std::cin >> ivedGener;
     
-        if (ivedGener != 0 && ivedGener != 1){
-            throw std::runtime_error("Įrašytas netinkamas simbolis!");
+        if (!std::cin){
+            throw std::runtime_error("Įrašytas netinkamas simbolis(-iai))!");
         }
     }
     catch (const std::exception& e) {
@@ -34,7 +34,7 @@ int main(){
     if (ivedSkait == 1){
         inputScan(studentai);
 
-        std::cout << std::left << std::setw(20) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+        std::cout << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
         std::cout << "---------------------------------------------------------------------------" << std::endl;
 
         outputScan(studentai);

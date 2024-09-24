@@ -117,11 +117,11 @@ void outputScan(std::vector<Studentas> &studentai){
 
     for (const auto &stud : studentai){
         try {
+            
             if (stud.tarpRez.empty()) {
                 throw std::runtime_error("Nėra tarpinių rezultatų studentui: " + stud.vardas + " " + stud.pavarde);
             }
 
-            
             double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
 
             std::vector<int> visiRez = stud.tarpRez;
