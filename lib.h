@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <vector>
-#include <iomanip>
-#include <numeric>
-#include <sstream>
-#include <random>
-#include <algorithm>
+#include <sstream> //getline išskirstymui
+#include <random> //atsitiktiniai skaičiai
+#include <algorithm> //sort
+#include <fstream> //darbas su failais
+#include <iomanip> //setw, setprecision, std::left, std::right
+#include <stdexcept> //try catch
 
 #endif

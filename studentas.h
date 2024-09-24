@@ -9,10 +9,14 @@ struct Studentas{
     std::vector<int> tarpRez;
     int egzamRez;
     double vidurkis, mediana;
+    std::vector<int> balai;
 };
 
-void input(Studentas &Lok);
-void output(Studentas Lok, int vidMed);
+void inputManual(Studentas &Lok);
+void inputScan(std::vector<Studentas> &studentai);
+void outputManual(Studentas Lok, int vidMed);
+void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
+void generate(int studGenSk, int ndGenSk);
 
 #endif
