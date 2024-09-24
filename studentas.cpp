@@ -89,19 +89,17 @@ void inputScan(std::vector<Studentas> &studentai) {
 void outputManual(Studentas Lok, int vidMed){
     
     if(vidMed == 0){
-        double vidurkis = (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)+Lok.egzamRez)/(Lok.tarpRez.size() + 1);
-
+        double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
+      
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
-        vidurkis << std::endl;
+        galut_vidurkis << std::endl;
     } else {
-        std::vector<int> visiRez = Lok.tarpRez;
-        visiRez.push_back(Lok.egzamRez);
-        double med = mediana(visiRez);
+        double galut_med = 0.4*(mediana(Lok.tarpRez)) + 0.6*Lok.egzamRez;
 
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-        med << std::endl;
+        galut_med << std::endl;
     }
     
 }
