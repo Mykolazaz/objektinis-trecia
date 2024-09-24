@@ -4,7 +4,7 @@
 double mediana(std::vector<int> &v){
     size_t n = v.size();
     sort(v.begin(), v.end());
-    if (n % 2 == 0) {
+    if (n % 2 == 0) { //dviejų vidurinių variacinės eilutės skaičių vidurkis
         return (v[n/2 - 1] + v[n/2]) / 2.0;
     } else {
         return v[n/2];
@@ -115,11 +115,14 @@ void outputScan(std::vector<Studentas> &studentai){
     
     std::ofstream fw("kursiokai_bendra.txt");
 
-    for (const auto &stud : studentai){
+    fw << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+    fw << "---------------------------------------------------------------------------" << std::endl;
+
+    for (const Studentas &stud : studentai){
         try {
-            
-            if (stud.tarpRez.empty()) {
-                throw std::runtime_error("Nėra tarpinių rezultatų studentui: " + stud.vardas + " " + stud.pavarde);
+
+            if (stud.tarpRez.empty() || stud.tarpRez.size() == 1) {
+                throw std::runtime_error("Nepakankamai įvertinimų studentui " + stud.vardas + " " + stud.pavarde + ".");
             }
 
             double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
@@ -128,18 +131,16 @@ void outputScan(std::vector<Studentas> &studentai){
             visiRez.push_back(stud.egzamRez);
             double med = mediana(visiRez);
 
-            std::cout << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
-
             fw << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
             vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
         }
+
         catch (const std::exception& e) {
         std::cerr << "ERROR: " << e.what() << std::endl;
         exit(EXIT_FAILURE);
         }
     }
-
+    std::cout << "Numatytasis failas nuskaitytas ir studentai surikiuoti pagal pavardes." << std::endl;
     fw.close();
 }
 

@@ -34,9 +34,6 @@ int main(){
     if (ivedSkait == 1){
         inputScan(studentai);
 
-        std::cout << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
-        std::cout << "---------------------------------------------------------------------------" << std::endl;
-
         outputScan(studentai);
 
         exit(EXIT_SUCCESS);
@@ -47,21 +44,21 @@ int main(){
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 
-    for (int i=0; i<studSk; i++){
+    for (int i=0; i<studSk; i++){ //ciklas sukamas išorėje funkcijų, priešingai nei inputScan
         inputManual(laikinasStud);
         studentai.push_back(laikinasStud);
         clean(laikinasStud);
     }
 
     if (vidMed == 0){
-        std::cout << std::left << std::setw(21) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::endl;
+        std::cout << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::endl;
         std::cout << "-------------------------------------------------------" << std::endl;
     } else {
-        std::cout << std::left << std::setw(21) << "Pavardė" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+        std::cout << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Med.)" << std::endl;
         std::cout << "-------------------------------------------------------" << std::endl;
     }
     
-    for (int i=0; i<studSk; i++){
+    for (int i=0; i<studSk; i++){ //ciklas sukamas išorėje funkcijų, priešingai nei inputScan
         outputManual(studentai.at(i), vidMed);
     }
     
