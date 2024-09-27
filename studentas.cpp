@@ -57,7 +57,7 @@ void inputManual(Studentas &Lok){
 }
 
 void inputScan(std::vector<Studentas> &studentai) {
-    std::ifstream fr("kursiokai.txt");
+    std::ifstream fr("studentai10000.txt");
     std::string eilute;
 
     std::getline(fr, eilute);
@@ -90,7 +90,7 @@ void outputManual(Studentas Lok, int vidMed){
     
     if(vidMed == 0){
         double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
-      
+
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
         galut_vidurkis << std::endl;
@@ -123,14 +123,14 @@ void outputScan(std::vector<Studentas> &studentai){
                 throw std::runtime_error("Nepakankamai įvertinimų studentui " + stud.vardas + " " + stud.pavarde + ".");
             }
 
-            double vidurkis = (accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)+stud.egzamRez)/(stud.tarpRez.size() + 1);
+            double galut_vidurkis = 0.4*(accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)/stud.tarpRez.size()) + 0.6*stud.egzamRez;
 
             std::vector<int> visiRez = stud.tarpRez;
             visiRez.push_back(stud.egzamRez);
-            double med = mediana(visiRez);
+            double galut_med =0.4*mediana(visiRez) + 0.6*stud.egzamRez;
 
             fw << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << med << std::endl;
+            galut_vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << galut_med << std::endl;
         }
 
         catch (const std::exception& e) {

@@ -1,5 +1,5 @@
 ### Studentų duomenų apdorojimo programa
-- Generuoją studentų informaciją: namų darbai (tarpiniai rezultatai) ir egzamino rezultatai
+- Generuoja studentų informaciją: namų darbai (tarpiniai rezultatai) ir egzamino rezultatai
 - Leidžia duomenis įvesti rankomis arba nuskaityti iš failo
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
 
