@@ -57,7 +57,7 @@ void inputManual(Studentas &Lok){
 }
 
 void inputScan(std::vector<Studentas> &studentai) {
-    std::ifstream fr("studentai10000.txt");
+    std::ifstream fr("kursiokai.txt");
     std::string eilute;
 
     std::getline(fr, eilute);
