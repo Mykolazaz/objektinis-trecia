@@ -30,19 +30,16 @@ void generate(int studGenSk, int ndGenSk){
 
     fw.close();
 }
+
 // naudotojas turi pasirinkti pagal ką reikia rušiuoti: vardas, pavarde, balas
-void inputScanSort(int studGenSk) {
+void inputScanSort(int studGenSk, int rusiavKateg) {
     std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
     std::ifstream fr(failoPavadinimas);
     std::string eilute;
 
     std::getline(fr, eilute);
 
-    std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
-    std::ofstream fwProtingi(failasProtingi);
-    
-    std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
-    std::ofstream fwKvaili(failasKvaili);
+    std::vector<Studentas> visiStudentai;
 
     while (std::getline(fr, eilute)) {
         std::istringstream iss(eilute);
@@ -62,42 +59,68 @@ void inputScanSort(int studGenSk) {
         }
 
         double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
-       
-        if (galut_vidurkis >= 5.0){
-            fwProtingi << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            galut_vidurkis << std::endl;
-        } else {
-            fwKvaili << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            galut_vidurkis << std::endl;
-        }
+        Lok.galutinis = galut_vidurkis;
+
+        visiStudentai.push_back(Lok);
     }
     fr.close();
+
+    if (rusiavKateg == 0) {
+        std::sort(visiStudentai.begin(), visiStudentai.end(), 
+                  [](const Studentas &a, const Studentas &b) { return a.vardas < b.vardas; });
+    } else if (rusiavKateg == 1) {
+        std::sort(visiStudentai.begin(), visiStudentai.end(), 
+                  [](const Studentas &a, const Studentas &b) { return a.pavarde < b.pavarde; });
+    } else if (rusiavKateg == 2) {
+        std::sort(visiStudentai.begin(), visiStudentai.end(), 
+                  [](const Studentas &a, const Studentas &b) { return a.galutinis > b.galutinis; });
+    }
+
+    std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fwProtingi(failasProtingi);
+    
+    std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fwKvaili(failasKvaili);
+
+    for (const auto &Lok : visiStudentai) {
+        if (Lok.galutinis >= 5.0){
+            fwProtingi << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            Lok.galutinis << std::endl;
+        } else {
+            fwKvaili << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            Lok.galutinis << std::endl;
+        }
+    }
+
+    fwProtingi.close();
+    fwKvaili.close();
 }
 
-void generateAll(){
+
+void generateAll(int rusiavKateg){
     std::cout << "Failas su 1000 studentų generuojamas..." << std::endl;
     generate(1000, 7);
-    inputScanSort(1000); // skaičius nurodo, kurį failą reikia atidaryti
+    inputScanSort(1000, rusiavKateg); // skaičius nurodo, kurį failą reikia atidaryti
     std::cout << "Failas su 1000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Failas su 10000 studentų generuojamas..." << std::endl;
     generate(10000, 7);
-    inputScanSort(10000);
+    inputScanSort(10000, rusiavKateg);
     std::cout << "Failas su 10000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Failas su 100000 studentų generuojamas..." << std::endl;
     generate(100000, 7);
-    inputScanSort(100000);
+    inputScanSort(100000, rusiavKateg);
     std::cout << "Failas su 100000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Failas su 1000000 studentų generuojamas..." << std::endl;
     generate(1000000, 7);
-    inputScanSort(1000000);
+    inputScanSort(1000000, rusiavKateg);
     std::cout << "Failas su 1000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Failas su 10000000 studentų generuojamas..." << std::endl;
     generate(10000000, 7);
-    inputScanSort(10000000);
+    inputScanSort(10000000, rusiavKateg);
     std::cout << "Failas su 10000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;

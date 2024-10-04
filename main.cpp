@@ -6,7 +6,7 @@ int main(){
     std::vector<Studentas> studentai;
     Studentas laikinasStud;
 
-    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait;
+    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg;
     
     try{
         std::cout << "Norite įvesti (0), generuoti (1) ar šabloniškai generuoti (2)?: " << std::endl;
@@ -27,8 +27,10 @@ int main(){
         generate(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
     } else if (ivedGener == 2){
+        std::cout << "Norėsite rušiuoti pagal: (0) vardą, (1) pavardę, (2) galut. balą:  " << std::endl;
+        std::cin >> rusiavKateg;
         std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
-        generateAll();
+        generateAll(rusiavKateg);
         exit(EXIT_SUCCESS);
     }
 
