@@ -2,7 +2,8 @@
 #include "studentas.h"
 
 void generate(int studGenSk, int ndGenSk){
-    std::ofstream fw("kursiokai.txt");
+    std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fw(failoPavadinimas);
 
     studGenSk += 1;
     ndGenSk += 1;
@@ -28,4 +29,18 @@ void generate(int studGenSk, int ndGenSk){
     }
 
     fw.close();
+}
+
+void generateAll(int ndGenSk){
+    generate(1000, ndGenSk);
+    std::cout << "Failas su 1000 studentų sugeneruotas." << std::endl;
+    generate(10000, ndGenSk);
+    std::cout << "Failas su 10000 studentų sugeneruotas." << std::endl;
+    generate(100000, ndGenSk);
+    std::cout << "Failas su 100000 studentų sugeneruotas." << std::endl;
+    generate(1000000, ndGenSk);
+    std::cout << "Failas su 1000000 studentų sugeneruotas." << std::endl;
+    generate(10000000, ndGenSk);
+    std::cout << "Failas su 10000000 studentų sugeneruotas." << std::endl;
+    std::cout << "Šabloninio generavimo darbas baigtas." << std::endl;
 }

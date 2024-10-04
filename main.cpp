@@ -9,7 +9,7 @@ int main(){
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait;
     
     try{
-        std::cout << "Norite įvesti (0) ar generuoti (1)?: " << std::endl;
+        std::cout << "Norite įvesti (0), generuoti (1) ar šabloniškai generuoti (2)?: " << std::endl;
         std::cin >> ivedGener;
     
         if (!std::cin){
@@ -25,6 +25,12 @@ int main(){
         std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << std::endl;
         std::cin >> studGenSk >> ndGenSk;
         generate(studGenSk, ndGenSk);
+        exit(EXIT_SUCCESS);
+    } else if (ivedGener == 2){
+        std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
+        std::cout << "Kiek namų darbų norėtumėte generuoti?:" << std::endl;
+        std::cin >> ndGenSk;
+        generateAll(ndGenSk);
         exit(EXIT_SUCCESS);
     }
 
