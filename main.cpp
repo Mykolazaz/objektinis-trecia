@@ -28,9 +28,7 @@ int main(){
         exit(EXIT_SUCCESS);
     } else if (ivedGener == 2){
         std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
-        std::cout << "Kiek namų darbų norėtumėte generuoti?:" << std::endl;
-        std::cin >> ndGenSk;
-        generateAll(ndGenSk);
+        generateAll();
         exit(EXIT_SUCCESS);
     }
 

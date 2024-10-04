@@ -30,17 +30,75 @@ void generate(int studGenSk, int ndGenSk){
 
     fw.close();
 }
+// naudotojas turi pasirinkti pagal ką reikia rušiuoti: vardas, pavarde, balas
+void inputScanSort(int studGenSk) {
+    std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
+    std::ifstream fr(failoPavadinimas);
+    std::string eilute;
 
-void generateAll(int ndGenSk){
-    generate(1000, ndGenSk);
-    std::cout << "Failas su 1000 studentų sugeneruotas." << std::endl;
-    generate(10000, ndGenSk);
-    std::cout << "Failas su 10000 studentų sugeneruotas." << std::endl;
-    generate(100000, ndGenSk);
-    std::cout << "Failas su 100000 studentų sugeneruotas." << std::endl;
-    generate(1000000, ndGenSk);
-    std::cout << "Failas su 1000000 studentų sugeneruotas." << std::endl;
-    generate(10000000, ndGenSk);
-    std::cout << "Failas su 10000000 studentų sugeneruotas." << std::endl;
-    std::cout << "Šabloninio generavimo darbas baigtas." << std::endl;
+    std::getline(fr, eilute);
+
+    std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fwProtingi(failasProtingi);
+    
+    std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fwKvaili(failasKvaili);
+
+    while (std::getline(fr, eilute)) {
+        std::istringstream iss(eilute);
+        Studentas Lok;
+
+        iss >> Lok.pavarde >> Lok.vardas;
+
+        int balas;
+        while (iss >> balas) {
+            Lok.balai.push_back(balas);
+        }
+
+        if (!Lok.balai.empty()) {
+            Lok.egzamRez = Lok.balai.back();
+            Lok.balai.pop_back();
+            Lok.tarpRez = Lok.balai;
+        }
+
+        double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
+       
+        if (galut_vidurkis >= 5.0){
+            fwProtingi << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            galut_vidurkis << std::endl;
+        } else {
+            fwKvaili << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
+            galut_vidurkis << std::endl;
+        }
+    }
+    fr.close();
+}
+
+void generateAll(){
+    std::cout << "Failas su 1000 studentų generuojamas..." << std::endl;
+    generate(1000, 7);
+    inputScanSort(1000); // skaičius nurodo, kurį failą reikia atidaryti
+    std::cout << "Failas su 1000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+
+    std::cout << "Failas su 10000 studentų generuojamas..." << std::endl;
+    generate(10000, 7);
+    inputScanSort(10000);
+    std::cout << "Failas su 10000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+
+    std::cout << "Failas su 100000 studentų generuojamas..." << std::endl;
+    generate(100000, 7);
+    inputScanSort(100000);
+    std::cout << "Failas su 100000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+
+    std::cout << "Failas su 1000000 studentų generuojamas..." << std::endl;
+    generate(1000000, 7);
+    inputScanSort(1000000);
+    std::cout << "Failas su 1000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+
+    std::cout << "Failas su 10000000 studentų generuojamas..." << std::endl;
+    generate(10000000, 7);
+    inputScanSort(10000000);
+    std::cout << "Failas su 10000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+
+    std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;
 }
