@@ -27,7 +27,7 @@ int main(){
         generate(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
     } else if (ivedGener == 2){
-        std::cout << "Norėsite rušiuoti pagal: (0) vardą, (1) pavardę, (2) galut. balą:  " << std::endl;
+        std::cout << "Norite rušiuoti pagal vardą (0), pavardę (1), galut. balą (2):" << std::endl;
         std::cin >> rusiavKateg;
         std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
         generateAll(rusiavKateg);

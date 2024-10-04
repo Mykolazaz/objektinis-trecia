@@ -33,6 +33,13 @@ void generate(int studGenSk, int ndGenSk){
 
 // naudotojas turi pasirinkti pagal ką reikia rušiuoti: vardas, pavarde, balas
 void inputScanSort(int studGenSk, int rusiavKateg) {
+    auto start = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff;
+
+    // Failų nuskaitymo laiko fiksavimo pradžia
+    start = std::chrono::high_resolution_clock::now();
+
     std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
     std::ifstream fr(failoPavadinimas);
     std::string eilute;
@@ -65,6 +72,14 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     }
     fr.close();
 
+    // Failų nuskaitymo laiko fiksavimo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << std::to_string(studGenSk) + " įrašų nuskaitymo laikas: " << diff.count() << std::endl;
+
+    // Failų rikiavimo laiko fiksavimo pradžia
+    start = std::chrono::high_resolution_clock::now();
+
     if (rusiavKateg == 0) {
         std::sort(visiStudentai.begin(), visiStudentai.end(), 
                   [](const Studentas &a, const Studentas &b) { return a.vardas < b.vardas; });
@@ -75,6 +90,14 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
         std::sort(visiStudentai.begin(), visiStudentai.end(), 
                   [](const Studentas &a, const Studentas &b) { return a.galutinis > b.galutinis; });
     }
+
+    // Failų rikiavimo laiko fiksavimo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << std::to_string(studGenSk) + " įrašų rikiavimo mažėjimo tvarka laikas: " << diff.count() << std::endl;
+
+    // Failų rašymo laiko fiksavimo pradžia
+    start = std::chrono::high_resolution_clock::now();
 
     std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
     std::ofstream fwProtingi(failasProtingi);
@@ -94,34 +117,39 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
 
     fwProtingi.close();
     fwKvaili.close();
+
+    // Failų rašymo laiko fiksavimo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << std::to_string(studGenSk) + " įrašų išvedimo į atskirus failus laikas: " << diff.count() << std::endl;
 }
 
 
 void generateAll(int rusiavKateg){
-    std::cout << "Failas su 1000 studentų generuojamas..." << std::endl;
+    // std::cout << "Failas su 1000 studentų generuojamas..." << std::endl;
     generate(1000, 7);
     inputScanSort(1000, rusiavKateg); // skaičius nurodo, kurį failą reikia atidaryti
-    std::cout << "Failas su 1000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    // std::cout << "Failas su 1000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    std::cout << "Failas su 10000 studentų generuojamas..." << std::endl;
+    // std::cout << "Failas su 10000 studentų generuojamas..." << std::endl;
     generate(10000, 7);
     inputScanSort(10000, rusiavKateg);
-    std::cout << "Failas su 10000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    // std::cout << "Failas su 10000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    std::cout << "Failas su 100000 studentų generuojamas..." << std::endl;
+    // std::cout << "Failas su 100000 studentų generuojamas..." << std::endl;
     generate(100000, 7);
     inputScanSort(100000, rusiavKateg);
-    std::cout << "Failas su 100000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    // std::cout << "Failas su 100000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    std::cout << "Failas su 1000000 studentų generuojamas..." << std::endl;
+    // std::cout << "Failas su 1000000 studentų generuojamas..." << std::endl;
     generate(1000000, 7);
     inputScanSort(1000000, rusiavKateg);
-    std::cout << "Failas su 1000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    // std::cout << "Failas su 1000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    std::cout << "Failas su 10000000 studentų generuojamas..." << std::endl;
+    // std::cout << "Failas su 10000000 studentų generuojamas..." << std::endl;
     generate(10000000, 7);
     inputScanSort(10000000, rusiavKateg);
-    std::cout << "Failas su 10000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    // std::cout << "Failas su 10000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
     std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;
 }
