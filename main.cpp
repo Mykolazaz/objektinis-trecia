@@ -31,6 +31,7 @@ int main(){
         std::cin >> rusiavKateg;
         std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
         generateAll(rusiavKateg);
+        std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
     }
 

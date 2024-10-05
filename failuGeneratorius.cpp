@@ -37,7 +37,7 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff;
 
-    // Failų nuskaitymo laiko fiksavimo pradžia
+    // Failo nuskaitymo pradžia
     start = std::chrono::high_resolution_clock::now();
 
     std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
@@ -72,84 +72,98 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     }
     fr.close();
 
-    // Failų nuskaitymo laiko fiksavimo pabaiga
+    // Failo nuskaitymo pabaiga
     end = std::chrono::high_resolution_clock::now();
     diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų nuskaitymo laikas: " << diff.count() << std::endl;
+    std::cout << std::to_string(studGenSk) + " įrašų nuskaitymas: " << diff.count() << std::endl;
 
-    // Failų rikiavimo laiko fiksavimo pradžia
+
+    auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
+        if (rusiavKateg == 0) return a.vardas < b.vardas;
+        if (rusiavKateg == 1) return a.pavarde < b.pavarde;
+        return a.galutinis > b.galutinis;
+    };
+
+    // Visų studentų rikiavimo pradžia
+    start = std::chrono::high_resolution_clock::now();
+    
+    std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
+    
+    // Visų studentų rikiavimo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << std::to_string(studGenSk) + " įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << diff.count() << std::endl;
+
+
+    // Studentų dalijimo pradžia
     start = std::chrono::high_resolution_clock::now();
 
-    if (rusiavKateg == 0) {
-        std::sort(visiStudentai.begin(), visiStudentai.end(), 
-                  [](const Studentas &a, const Studentas &b) { return a.vardas < b.vardas; });
-    } else if (rusiavKateg == 1) {
-        std::sort(visiStudentai.begin(), visiStudentai.end(), 
-                  [](const Studentas &a, const Studentas &b) { return a.pavarde < b.pavarde; });
-    } else if (rusiavKateg == 2) {
-        std::sort(visiStudentai.begin(), visiStudentai.end(), 
-                  [](const Studentas &a, const Studentas &b) { return a.galutinis > b.galutinis; });
+    std::vector<Studentas> protingi, kvaili;
+    for (const auto &student : visiStudentai) {
+        if (student.galutinis >= 5.0) {
+            protingi.push_back(student);
+        } else {
+            kvaili.push_back(student);
+        }
     }
 
-    // Failų rikiavimo laiko fiksavimo pabaiga
+    // Studentų dalijimo pabaiga
     end = std::chrono::high_resolution_clock::now();
     diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų rikiavimo mažėjimo tvarka laikas: " << diff.count() << std::endl;
+    std::cout << std::to_string(studGenSk) + " įrašų dalijimas į 'protingus' ir 'kvailus': " << diff.count() << std::endl;
 
-    // Failų rašymo laiko fiksavimo pradžia
+    
+    // "Protingų" studentų rašymo pradžia
     start = std::chrono::high_resolution_clock::now();
 
     std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
     std::ofstream fwProtingi(failasProtingi);
     
-    std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
-    std::ofstream fwKvaili(failasKvaili);
-
-    for (const auto &Lok : visiStudentai) {
-        if (Lok.galutinis >= 5.0){
-            fwProtingi << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            Lok.galutinis << std::endl;
-        } else {
-            fwKvaili << std::left << std::setw(20) << Lok.pavarde << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            Lok.galutinis << std::endl;
-        }
+    for (const auto &student : protingi) {
+        fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
+                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
     }
 
     fwProtingi.close();
-    fwKvaili.close();
 
-    // Failų rašymo laiko fiksavimo pabaiga
+    // "Protingų" studentų rašymo pabaiga
     end = std::chrono::high_resolution_clock::now();
     diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų išvedimo į atskirus failus laikas: " << diff.count() << std::endl;
+    std::cout << "'Protingų' studentų įrašų rašymas: " << diff.count() << std::endl;
+
+    // "Kvailų" studentų rašymo pradžia
+    start = std::chrono::high_resolution_clock::now();
+
+    std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fwKvaili(failasKvaili);
+
+    for (const auto &student : kvaili) {
+        fwKvaili << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
+                 << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+    }
+
+    fwKvaili.close();
+
+    // "Kvailų" studentų rašymo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << diff.count() << "\n" << std::endl;
 }
 
 
 void generateAll(int rusiavKateg){
-    // std::cout << "Failas su 1000 studentų generuojamas..." << std::endl;
     generate(1000, 7);
-    inputScanSort(1000, rusiavKateg); // skaičius nurodo, kurį failą reikia atidaryti
-    // std::cout << "Failas su 1000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
+    inputScanSort(1000, rusiavKateg); // skaičius nurodo, kurį failą reikia atidaryti, t.y. informacija(1000).txt
 
-    // std::cout << "Failas su 10000 studentų generuojamas..." << std::endl;
     generate(10000, 7);
     inputScanSort(10000, rusiavKateg);
-    // std::cout << "Failas su 10000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    // std::cout << "Failas su 100000 studentų generuojamas..." << std::endl;
     generate(100000, 7);
     inputScanSort(100000, rusiavKateg);
-    // std::cout << "Failas su 100000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    // std::cout << "Failas su 1000000 studentų generuojamas..." << std::endl;
     generate(1000000, 7);
     inputScanSort(1000000, rusiavKateg);
-    // std::cout << "Failas su 1000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
 
-    // std::cout << "Failas su 10000000 studentų generuojamas..." << std::endl;
     generate(10000000, 7);
     inputScanSort(10000000, rusiavKateg);
-    // std::cout << "Failas su 10000000 studentų sugeneruotas ir išskirstytas pagal balus." << std::endl;
-
-    std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;
 }
