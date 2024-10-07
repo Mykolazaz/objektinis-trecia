@@ -8,6 +8,13 @@ void generate(int studGenSk, int ndGenSk){
     studGenSk += 1;
     ndGenSk += 1;
 
+    auto start = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff;
+
+    // Failo nuskaitymo pradžia
+    start = std::chrono::high_resolution_clock::now();
+
     fw << std::left << std::setw(15) << "Pavarde"
     << std::setw(15) << "Vardas";
 
@@ -29,6 +36,11 @@ void generate(int studGenSk, int ndGenSk){
     }
 
     fw.close();
+
+    // Failo nuskaitymo pabaiga
+    end = std::chrono::high_resolution_clock::now();
+    diff = end - start;
+    std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << diff.count() << std::endl;
 }
 
 // naudotojas turi pasirinkti pagal ką reikia rušiuoti: vardas, pavarde, balas
@@ -152,18 +164,18 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
 
 
 void generateAll(int rusiavKateg){
-    generate(1000, 7);
+    generate(1000, 15);
     inputScanSort(1000, rusiavKateg); // skaičius nurodo, kurį failą reikia atidaryti, t.y. informacija(1000).txt
 
-    generate(10000, 7);
+    generate(10000, 15);
     inputScanSort(10000, rusiavKateg);
 
-    generate(100000, 7);
+    generate(100000, 15);
     inputScanSort(100000, rusiavKateg);
 
-    generate(1000000, 7);
+    generate(1000000, 15);
     inputScanSort(1000000, rusiavKateg);
 
-    generate(10000000, 7);
+    generate(10000000, 15);
     inputScanSort(10000000, rusiavKateg);
 }
