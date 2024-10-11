@@ -9,41 +9,46 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 #### Programos veikimo greičio (spartos) analizė (vidurkiai)
 
 ##### 1000 įrašų failas
-- Generavimas: 0.0121934
-- Nuskaitymas: 0.006234
-- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.00016
-- Dalijimas į 'protingus' ir 'kvailus': 0.000211708
-- 'Protingų' studentų įrašų rašymas: 0.00425054
-- 'Kvailų' studentų įrašų rašymas: 0.00271296
+- Generavimas: 0.0125079
+- Nuskaitymas: 0.00622196
+- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.000161875
+- Dalijimas į 'protingus' ir 'kvailus': 0.000255541
+- 'Protingų' studentų įrašų rašymas: 0.00435612
+- 'Kvailų' studentų įrašų rašymas: 0.00312658
+- Bendras veikimo laikas be generavimo: 0.0141221
 
 ##### 10000 įrašų failas
-- Generavimas: 0.095239
-- Nuskaitymas: 0.0371276
-- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.000987667
-- Dalijimas į 'protingus' ir 'kvailus': 0.00150442
-- 'Protingų' studentų įrašų rašymas: 0.0243142
-- 'Kvailų' studentų įrašų rašymas: 0.017445
+- Generavimas: 0.0641175
+- Nuskaitymas: 0.0362948
+- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.00099025
+- Dalijimas į 'protingus' ir 'kvailus': 0.00147125
+- 'Protingų' studentų įrašų rašymas: 0.0318718
+- 'Kvailų' studentų įrašų rašymas: 0.0171221
+- Bendras veikimo laikas be generavimo: 0.0877502
 
 ##### 100000 įrašų failas
-- Generavimas: 0.613153
-- Nuskaitymas: 0.362049
-- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.00969379
-- Dalijimas į 'protingus' ir 'kvailus': 0.0136939
-- 'Protingų' studentų įrašų rašymas: 0.239303
-- 'Kvailų' studentų įrašų rašymas: 0.167813
+- Generavimas: 0.606544
+- Nuskaitymas: 0.359194
+- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.0100091
+- Dalijimas į 'protingus' ir 'kvailus': 0.0142796
+- 'Protingų' studentų įrašų rašymas: 0.240313
+- 'Kvailų' studentų įrašų rašymas: 0.172792
+- Bendras veikimo laikas be generavimo: 0.796588
 
 ##### 1000000 įrašų failas
-- Generavimas: 6.09209
-- Nuskaitymas: 3.58912
-- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.0973582
-- Dalijimas į 'protingus' ir 'kvailus': 0.14392
-- 'Protingų' studentų įrašų rašymas: 2.36107
-- 'Kvailų' studentų įrašų rašymas: 1.66743
+- Generavimas: 6.25748
+- Nuskaitymas: 3.62752
+- Rikiavimas (sort f-ja) mažėjimo tvarka: 0.110206
+- Dalijimas į 'protingus' ir 'kvailus': 0.205448
+- 'Protingų' studentų įrašų rašymas: 2.45075
+- 'Kvailų' studentų įrašų rašymas: 1.74791
+- Bendras veikimo laikas be generavimo: 8.14183
 
 ##### 10000000 įrašų failas
-- Generavimas: 62.4118
-- Nuskaitymas: 39.7028
-- Rikiavimas (sort f-ja) mažėjimo tvarka: 1.78239
-- Dalijimas į 'protingus' ir 'kvailus': 9.78603
-- 'Protingų' studentų įrašų rašymas: 27.1772
-- 'Kvailų' studentų įrašų rašymas: 18.269
+- Generavimas: 63.4451
+- Nuskaitymas: 36.9167
+- Rikiavimas (sort f-ja) mažėjimo tvarka: 1.79614
+- Dalijimas į 'protingus' ir 'kvailus': 11.6688
+- 'Protingų' studentų įrašų rašymas: 25.9685
+- 'Kvailų' studentų įrašų rašymas: 18.2166
+- Bendras veikimo laikas be generavimo: 94.5667

@@ -17,7 +17,7 @@ void generate(int studGenSk, int ndGenSk){
 
     fw << std::left << std::setw(15) << "Pavarde"
     << std::setw(15) << "Vardas";
-
+    
     for (int i = 1; i < ndGenSk; i++){
         fw << "ND" << std::setw(2) << std::left << i << " ";
     }
@@ -45,12 +45,12 @@ void generate(int studGenSk, int ndGenSk){
 
 // naudotojas turi pasirinkti pagal ką reikia rušiuoti: vardas, pavarde, balas
 void inputScanSort(int studGenSk, int rusiavKateg) {
-    auto start = std::chrono::high_resolution_clock::now();
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> diff;
+    auto start1 = std::chrono::high_resolution_clock::now();
+    auto end1 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff1;
 
     // Failo nuskaitymo pradžia
-    start = std::chrono::high_resolution_clock::now();
+    start1 = std::chrono::high_resolution_clock::now();
 
     std::string failoPavadinimas = "informacija" + std::to_string(studGenSk) + ".txt";
     std::ifstream fr(failoPavadinimas);
@@ -59,6 +59,7 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     std::getline(fr, eilute);
 
     std::vector<Studentas> visiStudentai;
+    visiStudentai.reserve(studGenSk);
 
     while (std::getline(fr, eilute)) {
         std::istringstream iss(eilute);
@@ -85,9 +86,9 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     fr.close();
 
     // Failo nuskaitymo pabaiga
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų nuskaitymas: " << diff.count() << std::endl;
+    end1 = std::chrono::high_resolution_clock::now();
+    diff1 = end1 - start1;
+    std::cout << std::to_string(studGenSk) + " įrašų nuskaitymas: " << diff1.count() << std::endl;
 
 
     auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
@@ -96,21 +97,29 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
         return a.galutinis > b.galutinis;
     };
 
+    auto start2 = std::chrono::high_resolution_clock::now();
+    auto end2 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff2;
+
     // Visų studentų rikiavimo pradžia
-    start = std::chrono::high_resolution_clock::now();
+    start2 = std::chrono::high_resolution_clock::now();
     
     std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
     
     // Visų studentų rikiavimo pabaiga
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << diff.count() << std::endl;
+    end2 = std::chrono::high_resolution_clock::now();
+    diff2 = end2 - start2;
+    std::cout << std::to_string(studGenSk) + " įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << diff2.count() << std::endl;
 
+    auto start3 = std::chrono::high_resolution_clock::now();
+    auto end3 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff3;
 
     // Studentų dalijimo pradžia
-    start = std::chrono::high_resolution_clock::now();
+    start3 = std::chrono::high_resolution_clock::now();
 
     std::vector<Studentas> protingi, kvaili;
+
     for (const auto &student : visiStudentai) {
         if (student.galutinis >= 5.0) {
             protingi.push_back(student);
@@ -120,17 +129,24 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     }
 
     // Studentų dalijimo pabaiga
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << std::to_string(studGenSk) + " įrašų dalijimas į 'protingus' ir 'kvailus': " << diff.count() << std::endl;
+    end3 = std::chrono::high_resolution_clock::now();
+    diff3 = end3 - start3;
+    std::cout << std::to_string(studGenSk) + " įrašų dalijimas į 'protingus' ir 'kvailus': " << diff3.count() << std::endl;
 
+    auto start4 = std::chrono::high_resolution_clock::now();
+    auto end4 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff4;
     
     // "Protingų" studentų rašymo pradžia
-    start = std::chrono::high_resolution_clock::now();
+    start4 = std::chrono::high_resolution_clock::now();
 
     std::string failasProtingi = "protingi" + std::to_string(studGenSk) + ".txt";
     std::ofstream fwProtingi(failasProtingi);
     
+    fwProtingi << std::left << std::setw(20) << "Pavarde"
+    << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;
+    fwProtingi << "-------------------------------------------------------" << std::endl;
+
     for (const auto &student : protingi) {
         fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
                    << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
@@ -139,15 +155,23 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     fwProtingi.close();
 
     // "Protingų" studentų rašymo pabaiga
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << "'Protingų' studentų įrašų rašymas: " << diff.count() << std::endl;
+    end4 = std::chrono::high_resolution_clock::now();
+    diff4 = end4 - start4;
+    std::cout << "'Protingų' studentų įrašų rašymas: " << diff4.count() << std::endl;
+
+    auto start5 = std::chrono::high_resolution_clock::now();
+    auto end5 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff5;
 
     // "Kvailų" studentų rašymo pradžia
-    start = std::chrono::high_resolution_clock::now();
+    start5 = std::chrono::high_resolution_clock::now();
 
     std::string failasKvaili = "kvaili" + std::to_string(studGenSk) + ".txt";
     std::ofstream fwKvaili(failasKvaili);
+
+    fwKvaili << std::left << std::setw(20) << "Pavarde"
+    << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;;
+    fwKvaili << "-------------------------------------------------------" << std::endl;
 
     for (const auto &student : kvaili) {
         fwKvaili << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
@@ -157,9 +181,11 @@ void inputScanSort(int studGenSk, int rusiavKateg) {
     fwKvaili.close();
 
     // "Kvailų" studentų rašymo pabaiga
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << "'Kvailų' studentų įrašų rašymas: " << diff.count() << "\n" << std::endl;
+    end5 = std::chrono::high_resolution_clock::now();
+    diff5 = end5 - start5;
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << diff5.count() << std::endl;
+
+    std::cout << "Bendras veikimo laikas be generavimo: " << diff1.count() + diff2.count() + diff3.count() + diff4.count() + diff5.count() << "\n" << std::endl;
 }
 
 
