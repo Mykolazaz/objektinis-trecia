@@ -185,7 +185,7 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
 
     std::getline(fr, eilute);
 
-    std::list<Studentas> visiStudentai;
+    std::list<Studentas> visiStudentaiList;
 
     while (std::getline(fr, eilute)) {
         std::istringstream iss(eilute);
@@ -207,7 +207,7 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
         double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
         Lok.galutinis = galut_vidurkis;
 
-        visiStudentai.push_back(Lok);
+        visiStudentaiList.push_back(Lok);
     }
     fr.close();
 
@@ -223,7 +223,7 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
     // Visų studentų rikiavimo pradžia
     Timer c;
 
-    std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
+    std::sort(visiStudentaiList.begin(), visiStudentaiList.end(), sortFunction);
     
     // Visų studentų rikiavimo pabaiga
     std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << c.elapsed() << std::endl;
@@ -231,16 +231,16 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
     // Studentų dalijimo pradžia
     Timer d;
 
-    std::vector<Studentas> protingi, kvaili;
+    std::list<Studentas> protingiList, kvailiList;
 
-    for (const auto &student : visiStudentai) {
+    for (const auto &student : visiStudentaiList) {
         if (student.galutinis >= 5.0) {
-            protingi.push_back(student);
+            protingiList.push_back(student);
         } else {
-            kvaili.push_back(student);
+            kvailiList.push_back(student);
         }
     }
-    visiStudentai.clear();
+    visiStudentaiList.clear();
 
     // Studentų dalijimo pabaiga
     std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << d.elapsed() << std::endl;
@@ -255,13 +255,13 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
     << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;
     fwProtingi << "-------------------------------------------------------" << std::endl;
 
-    for (const auto &student : protingi) {
+    for (const auto &student : protingiList) {
         fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
                    << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
     }
 
     fwProtingi.close();
-    protingi.clear();
+    protingiList.clear(); 
 
     // "Protingų" studentų rašymo pabaiga
     std::cout << "'Protingų' studentų įrašų rašymas: " << e.elapsed() << std::endl;
@@ -276,13 +276,13 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
     << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;;
     fwKvaili << "-------------------------------------------------------" << std::endl;
 
-    for (const auto &student : kvaili) {
+    for (const auto &student : kvailiList) {
         fwKvaili << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
                  << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
     }
 
     fwKvaili.close();
-    kvaili.clear();
+    kvailiList.clear();
 
     // "Kvailų" studentų rašymo pabaiga
     std::cout << "'Kvailų' studentų įrašų rašymas: " << f.elapsed() << "\n" << std::endl;
