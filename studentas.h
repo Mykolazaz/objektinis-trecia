@@ -20,5 +20,6 @@ void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
 void generate(int studGenSk, int ndGenSk);
 void inputScanSort(std::string failoPav, int rusiavKateg);
+void inputScanSortList(std::string failoPav, int rusiavKateg);
 
 #endif

@@ -10,5 +10,6 @@
 #include <iomanip> // setw, setprecision, std::left, std::right
 #include <stdexcept> // try catch
 #include <chrono> // funkcijos darbo laiko fiksavimas
+#include <list>
 
 #endif
