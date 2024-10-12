@@ -1,4 +1,4 @@
-### Studentų duomenų apdorojimo programa
+## Studentų duomenų apdorojimo programa
 - Generuoja studentų informaciją: namų darbai (tarpiniai rezultatai) ir egzamino rezultatai
 - Leidžia duomenis įvesti rankomis arba nuskaityti iš failo
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
@@ -6,8 +6,14 @@
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono.
 
-#### Programos veikimo greičio (spartos) analizė (vidurkiai)
+### Programos veikimo greičio (spartos) analizė (vidurkiai)
+Testavimo įranga:
+- CPU: Apple M1
+- RAM: 8 GB unified memory
+- SSD: 256 GB ~2700 MB/s
 
+
+### Testavimas su std::vector
 ##### 1000 įrašų failas
 - Generavimas: 0.012351
 - Nuskaitymas: 0.00770167
