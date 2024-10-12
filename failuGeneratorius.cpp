@@ -19,8 +19,8 @@ class Timer {
 void generate(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas pradėtas." << std::endl;
 
-    std::string failoPavadinimas = "info" + std::to_string(studGenSk) + ".txt";
-    std::ofstream fw(failoPavadinimas);
+    std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
+    std::ofstream fw(failoPav);
 
     studGenSk += 1;
     ndGenSk += 1;
@@ -35,7 +35,7 @@ void generate(int studGenSk, int ndGenSk){
 
     fw << std::setw(10) << "Egzaminimas" << std::endl;
     
-    std::srand(std::time(0));
+    std::srand(time(0));
 
     for (int i = 1; i < studGenSk; i++){
         fw << std::left << std::setw(15) << ("Pavarde"+std::to_string(i))
@@ -55,7 +55,6 @@ void generate(int studGenSk, int ndGenSk){
 }
 
 void inputScanSort(std::string failoPav, int rusiavKateg) {
-
     Timer a;
 
     // Failo nuskaitymo pradžia
@@ -68,6 +67,7 @@ void inputScanSort(std::string failoPav, int rusiavKateg) {
     std::getline(fr, eilute);
 
     std::vector<Studentas> visiStudentai;
+    visiStudentai.reserve(1000000);
 
     while (std::getline(fr, eilute)) {
         std::istringstream iss(eilute);
@@ -143,6 +143,7 @@ void inputScanSort(std::string failoPav, int rusiavKateg) {
     }
 
     fwProtingi.close();
+    protingi.clear();
 
     // "Protingų" studentų rašymo pabaiga
     std::cout << "'Protingų' studentų įrašų rašymas: " << e.elapsed() << std::endl;
@@ -163,6 +164,7 @@ void inputScanSort(std::string failoPav, int rusiavKateg) {
     }
 
     fwKvaili.close();
+    kvaili.clear();
 
     // "Kvailų" studentų rašymo pabaiga
     std::cout << "'Kvailų' studentų įrašų rašymas: " << f.elapsed() << "\n" << std::endl;
