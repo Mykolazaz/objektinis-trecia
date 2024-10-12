@@ -19,7 +19,6 @@ void outputManual(Studentas Lok, int vidMed);
 void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
 void generate(int studGenSk, int ndGenSk);
-void generateAll(int rusiavKateg);
-void inputScanSort(int studGenSk, int rusiavKateg);
+void inputScanSort(std::string failoPav, int rusiavKateg);
 
 #endif

@@ -7,9 +7,10 @@ int main(){
     Studentas laikinasStud;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg;
+    std::string failoPav;
     
     try{
-        std::cout << "Norite įvesti (0), generuoti (1) ar šabloniškai generuoti (2)?: " << std::endl;
+        std::cout << "Norite įvesti (0), generuoti (1) ar testuoti (2)?: " << std::endl;
         std::cin >> ivedGener;
     
         if (!std::cin){
@@ -26,12 +27,17 @@ int main(){
         std::cin >> studGenSk >> ndGenSk;
         generate(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
+        
     } else if (ivedGener == 2){
+        std::cout << "Kurį failą norite testuoti?" << std::endl;
+        system("ls *.txt"); //naudoti 'dir' windows platformai
+        std::cout << "Įveskite failo pavadinimą (be '.txt'): " << std::endl;
+        std::cin >> failoPav;
         std::cout << "Norite rušiuoti pagal vardą (0), pavardę (1), galut. balą (2):" << std::endl;
         std::cin >> rusiavKateg;
-        std::cout << "Šabloniškas studentų generavimas pradėtas." << std::endl;
-        generateAll(rusiavKateg);
-        std::cout << "Šabloninio generavimo ir išskirstymo darbas baigtas." << std::endl;
+        std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
+        inputScanSort(failoPav, rusiavKateg);
+        std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
     }
 
