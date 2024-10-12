@@ -223,7 +223,7 @@ void inputScanSortList(std::string failoPav, int rusiavKateg) {
     // Visų studentų rikiavimo pradžia
     Timer c;
 
-    std::sort(visiStudentaiList.begin(), visiStudentaiList.end(), sortFunction);
+    visiStudentaiList.sort(sortFunction);
     
     // Visų studentų rikiavimo pabaiga
     std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << c.elapsed() << std::endl;

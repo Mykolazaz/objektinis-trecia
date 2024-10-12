@@ -27,7 +27,7 @@ int main(){
         std::cin >> studGenSk >> ndGenSk;
         generate(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
-        
+
     } else if (ivedGener == 2){
         std::cout << "Kurį failą norite testuoti?" << std::endl;
         system("ls *.txt"); //naudoti 'dir' windows platformai
@@ -37,6 +37,7 @@ int main(){
         std::cin >> rusiavKateg;
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
         inputScanSort(failoPav, rusiavKateg);
+        inputScanSortList(failoPav, rusiavKateg);
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
     }
