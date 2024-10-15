@@ -20,36 +20,50 @@ void generateInfo(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas pradėtas." << std::endl;
 
     std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
-    std::ofstream fw(failoPav);
+    std::ofstream fw(failoPav, std::ios::binary);
 
     studGenSk += 1;
     ndGenSk += 1;
 
     Timer t;
 
-    fw << std::left << std::setw(15) << "Pavarde" << std::setw(15) << "Vardas";
+    std::stringstream buffer;
+
+    buffer << std::left << std::setw(15) << "Pavarde" << std::setw(15) << "Vardas";
     
     for (int i = 1; i < ndGenSk; i++){
-        fw << "ND" << std::setw(2) << std::left << i << " ";
+        buffer << "ND" << std::setw(2) << std::left << i << " ";
     }
 
-    fw << std::setw(10) << "Egzaminimas" << std::endl;
+    buffer << std::setw(10) << "Egzaminimas" << std::endl;
     
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 10);
 
+    std::string pavarde, vardas;
+    pavarde.reserve(15);
+    vardas.reserve(15);
+
     for (int i = 1; i < studGenSk; i++){
-        fw << std::left << std::setw(15) << ("Pavarde"+std::to_string(i))
+        buffer << std::left << std::setw(15) << ("Pavarde"+std::to_string(i))
         << std::setw(15) << ("Vardas"+std::to_string(i));
         
         for (int j = 1; j < ndGenSk; j++){
-            fw << std::setw(5) << dist(mt);    
+            buffer << std::setw(5) << dist(mt);    
         }
 
-        fw << std::setw(10) << dist(mt) << std::endl;
+        buffer << std::setw(10) << dist(mt) << std::endl;
+
+        if (buffer.tellp() > 64 * 1024 * 1024) {
+            fw << buffer.rdbuf();
+            buffer.str("");
+            buffer.clear();
+        }
     }
 
+    fw << buffer.rdbuf();
+    
     fw.close();
 
     std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << t.elapsed() << std::endl;

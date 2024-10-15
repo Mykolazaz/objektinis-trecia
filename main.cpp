@@ -16,8 +16,7 @@ int main(){
         if (!std::cin || (ivedGener != 0 && ivedGener != 1 && ivedGener != 2)){
             throw std::runtime_error("Įrašytas netinkamas simbolis(-iai))!");
         }
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         std::cerr << "ERROR:" << e.what() << std::endl;
         exit(EXIT_FAILURE);
     }
@@ -51,14 +50,13 @@ int main(){
 
     if (ivedSkait == 1){
         inputScan(studentai);
-
         outputScan(studentai);
-
         exit(EXIT_SUCCESS);
     }
 
     std::cout << "Apie kiek studentų pildysite informaciją?:" << std::endl;
     std::cin >> studSk;
+    
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 

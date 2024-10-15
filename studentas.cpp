@@ -90,7 +90,6 @@ void inputScan(std::vector<Studentas> &studentai) {
 
 
 void outputManual(Studentas Lok, int vidMed){
-    
     if(vidMed == 0){
         double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
 
@@ -108,7 +107,6 @@ void outputManual(Studentas Lok, int vidMed){
 }
 
 void outputScan(std::vector<Studentas> &studentai){
-
     std::sort(studentai.begin(), studentai.end(), 
               [](const Studentas &a, const Studentas &b) {
                   return a.pavarde < b.pavarde;
