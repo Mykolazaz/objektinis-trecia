@@ -35,17 +35,19 @@ void generate(int studGenSk, int ndGenSk){
 
     fw << std::setw(10) << "Egzaminimas" << std::endl;
     
-    std::srand(time(0));
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, 10);
 
     for (int i = 1; i < studGenSk; i++){
         fw << std::left << std::setw(15) << ("Pavarde"+std::to_string(i))
         << std::setw(15) << ("Vardas"+std::to_string(i));
         
         for (int j = 1; j < ndGenSk; j++){
-            fw << std::setw(5) << rand() % 10 + 1;    
+            fw << std::setw(5) << dist(mt);    
         }
 
-        fw << std::setw(10) << rand() % 10 + 1 << std::endl;
+        fw << std::setw(10) << dist(mt) << std::endl;
     }
 
     fw.close();
