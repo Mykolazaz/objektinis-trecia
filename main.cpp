@@ -56,7 +56,7 @@ int main(){
 
     std::cout << "Apie kiek studentų pildysite informaciją?:" << std::endl;
     std::cin >> studSk;
-    
+
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 
