@@ -16,7 +16,7 @@ class Timer {
     }
 };
 
-void generate(int studGenSk, int ndGenSk){
+void generateInfo(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas pradėtas." << std::endl;
 
     std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
@@ -56,7 +56,7 @@ void generate(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas baigtas." << std::endl;
 }
 
-void inputScanSort(std::string failoPav, int rusiavKateg) {
+void inputSplitSort(std::string failoPav, int rusiavKateg) {
     Timer a;
 
     // Failo nuskaitymo pradžia
@@ -175,7 +175,7 @@ void inputScanSort(std::string failoPav, int rusiavKateg) {
     std::cout << "Bendras veikimo laikas be generavimo: " << a.elapsed() << "\n" << std::endl;
 }
 
-void inputScanSortList(std::string failoPav, int rusiavKateg) {
+void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     Timer a;
 
     // Failo nuskaitymo pradžia

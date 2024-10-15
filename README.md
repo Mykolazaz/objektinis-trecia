@@ -4,7 +4,7 @@
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
 - Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į failą atskirai
 
-Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono.
+Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
 ### Programos veikimo greičio (spartos) analizė (vidurkiai)
 Testavimo įranga:

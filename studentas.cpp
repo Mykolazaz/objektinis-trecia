@@ -47,10 +47,13 @@ void inputManual(Studentas &Lok){
             }
         }
     } else {
-        std::srand(std::time(0));
-        Lok.egzamRez = rand() % 10 + 1;
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(0, 10);
+
+        Lok.egzamRez = dist(mt);
         for (int i = 0; i < 5; i++){
-            Lok.tarpRez.push_back(rand() % 10 + 1);
+            Lok.tarpRez.push_back(dist(mt));
         }
     }
     

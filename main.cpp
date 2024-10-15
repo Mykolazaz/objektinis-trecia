@@ -13,7 +13,7 @@ int main(){
         std::cout << "Norite įvesti (0), generuoti (1) ar testuoti (2)?: " << std::endl;
         std::cin >> ivedGener;
     
-        if (!std::cin){
+        if (!std::cin || (ivedGener != 0 && ivedGener != 1 && ivedGener != 2)){
             throw std::runtime_error("Įrašytas netinkamas simbolis(-iai))!");
         }
     }
@@ -25,19 +25,23 @@ int main(){
     if (ivedGener == 1){
         std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << std::endl;
         std::cin >> studGenSk >> ndGenSk;
-        generate(studGenSk, ndGenSk);
+        generateInfo(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
 
     } else if (ivedGener == 2){
         std::cout << "Kurį failą norite testuoti?" << std::endl;
         system("ls *.txt"); //naudoti 'dir' windows platformai
+
         std::cout << "Įveskite failo pavadinimą (be '.txt'): " << std::endl;
         std::cin >> failoPav;
+
         std::cout << "Norite rušiuoti pagal vardą (0), pavardę (1), galut. balą (2):" << std::endl;
         std::cin >> rusiavKateg;
+
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
-        inputScanSort(failoPav, rusiavKateg);
-        inputScanSortList(failoPav, rusiavKateg);
+        inputSplitSort(failoPav, rusiavKateg);
+        inputSplitSortList(failoPav, rusiavKateg);
+        
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
     }

@@ -18,8 +18,8 @@ void inputScan(std::vector<Studentas> &studentai);
 void outputManual(Studentas Lok, int vidMed);
 void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
-void generate(int studGenSk, int ndGenSk);
-void inputScanSort(std::string failoPav, int rusiavKateg);
-void inputScanSortList(std::string failoPav, int rusiavKateg);
+void generateInfo(int studGenSk, int ndGenSk);
+void inputSplitSort(std::string failoPav, int rusiavKateg);
+void inputSplitSortList(std::string failoPav, int rusiavKateg);
 
 #endif
