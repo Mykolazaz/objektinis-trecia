@@ -21,12 +21,14 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
+    // Failo generavimas
     if (ivedGener == 1){
         std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << std::endl;
         std::cin >> studGenSk >> ndGenSk;
         generateInfo(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
 
+    // Failo testavimas
     } else if (ivedGener == 2){
         std::cout << "Kurį failą norite testuoti?" << std::endl;
         system("ls *.txt"); //naudoti 'dir' windows platformai
@@ -39,12 +41,13 @@ int main(){
 
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
         inputSplitSort(failoPav, rusiavKateg);
-        inputSplitSortList(failoPav, rusiavKateg);
+        //inputSplitSortList(failoPav, rusiavKateg);
         
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
     }
 
+    // Duomenų įvedimas rankimis
     std::cout << "Duomenis įvesti rankomis (0) ar nuskaityti failą ir išvesti sulygiuotą (1)?:" << std::endl;
     std::cin >> ivedSkait;
 
@@ -60,7 +63,7 @@ int main(){
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 
-    for (int i=0; i<studSk; i++){ //ciklas sukamas išorėje funkcijų, priešingai nei inputScan
+    for (int i=0; i<studSk; i++){
         inputManual(laikinasStud);
         studentai.push_back(laikinasStud);
         clean(laikinasStud);
@@ -74,7 +77,7 @@ int main(){
         std::cout << "-------------------------------------------------------" << std::endl;
     }
     
-    for (int i=0; i<studSk; i++){ //ciklas sukamas išorėje funkcijų, priešingai nei inputScan
+    for (int i=0; i<studSk; i++){
         outputManual(studentai.at(i), vidMed);
     }
     

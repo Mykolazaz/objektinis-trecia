@@ -25,7 +25,7 @@ void generateInfo(int studGenSk, int ndGenSk){
     studGenSk += 1;
     ndGenSk += 1;
 
-    Timer t;
+    Timer generLaikas;
 
     std::stringstream buffer;
 
@@ -66,15 +66,15 @@ void generateInfo(int studGenSk, int ndGenSk){
     
     fw.close();
 
-    std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << t.elapsed() << std::endl;
+    std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << generLaikas.elapsed() << std::endl;
     std::cout << "Failo generavimas baigtas." << std::endl;
 }
 
 void inputSplitSort(std::string failoPav, int rusiavKateg) {
-    Timer a;
+    Timer bendrLaikas;
 
     // Failo nuskaitymo pradžia
-    Timer b;
+    Timer uzdLaikas;
 
     failoPav = failoPav + ".txt";
     std::ifstream fr(failoPav);
@@ -111,7 +111,7 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     fr.close();
 
     // Failo nuskaitymo pabaiga
-    std::cout << "Įrašų nuskaitymas: " << b.elapsed() << std::endl;
+    std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << std::endl;
 
     auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
         if (rusiavKateg == 0) return a.vardas < b.vardas;
@@ -120,15 +120,15 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     };
 
     // Visų studentų rikiavimo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
     
     // Visų studentų rikiavimo pabaiga
-    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << b.elapsed() << std::endl;
+    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << uzdLaikas.elapsed() << std::endl;
 
     // Studentų dalijimo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::vector<Studentas> protingi, kvaili;
 
@@ -142,10 +142,10 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     visiStudentai.clear();
 
     // Studentų dalijimo pabaiga
-    std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << b.elapsed() << std::endl;
+    std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
     
     // "Protingų" studentų rašymo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::string failasProtingi = "protingi.txt";
     std::ofstream fwProtingi(failasProtingi);
@@ -163,10 +163,10 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     protingi.clear();
 
     // "Protingų" studentų rašymo pabaiga
-    std::cout << "'Protingų' studentų įrašų rašymas: " << b.elapsed() << std::endl;
+    std::cout << "'Protingų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << std::endl;
 
     // "Kvailų" studentų rašymo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::string failasKvaili = "kvaili.txt";
     std::ofstream fwKvaili(failasKvaili);
@@ -184,16 +184,16 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     kvaili.clear();
 
     // "Kvailų" studentų rašymo pabaiga
-    std::cout << "'Kvailų' studentų įrašų rašymas: " << b.elapsed() << "\n" << std::endl;
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n" << std::endl;
 
-    std::cout << "Bendras veikimo laikas be generavimo: " << a.elapsed() << "\n" << std::endl;
+    std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << std::endl;
 }
 
 void inputSplitSortList(std::string failoPav, int rusiavKateg) {
-    Timer a;
+    Timer bendrLaikas;
 
     // Failo nuskaitymo pradžia
-    Timer b;
+    Timer uzdLaikas;
 
     failoPav = failoPav + ".txt";
     std::ifstream fr(failoPav);
@@ -228,7 +228,7 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     fr.close();
 
     // Failo nuskaitymo pabaiga
-    std::cout << "Įrašų nuskaitymas: " << b.elapsed() << std::endl;
+    std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << std::endl;
 
     auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
         if (rusiavKateg == 0) return a.vardas < b.vardas;
@@ -237,15 +237,15 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     };
 
     // Visų studentų rikiavimo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     visiStudentaiList.sort(sortFunction);
     
     // Visų studentų rikiavimo pabaiga
-    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << b.elapsed() << std::endl;
+    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << uzdLaikas.elapsed() << std::endl;
 
     // Studentų dalijimo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::list<Studentas> protingiList, kvailiList;
 
@@ -259,10 +259,10 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     visiStudentaiList.clear();
 
     // Studentų dalijimo pabaiga
-    std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << b.elapsed() << std::endl;
+    std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
     
     // "Protingų" studentų rašymo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::string failasProtingi = "protingi.txt";
     std::ofstream fwProtingi(failasProtingi);
@@ -280,10 +280,10 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     protingiList.clear(); 
 
     // "Protingų" studentų rašymo pabaiga
-    std::cout << "'Protingų' studentų įrašų rašymas: " << b.elapsed() << std::endl;
+    std::cout << "'Protingų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << std::endl;
 
     // "Kvailų" studentų rašymo pradžia
-    b.reset();
+    uzdLaikas.reset();
 
     std::string failasKvaili = "kvaili.txt";
     std::ofstream fwKvaili(failasKvaili);
@@ -301,7 +301,7 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     kvailiList.clear();
 
     // "Kvailų" studentų rašymo pabaiga
-    std::cout << "'Kvailų' studentų įrašų rašymas: " << b.elapsed() << "\n" << std::endl;
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n" << std::endl;
 
-    std::cout << "Bendras veikimo laikas be generavimo: " << a.elapsed() << "\n" << std::endl;
+    std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << std::endl;
 }
