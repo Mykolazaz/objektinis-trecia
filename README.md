@@ -11,4 +11,6 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - RAM: 8 GB LPDDR4X-4266
 - SSD: 256 GB ~2700 MB/s
 
-#### Pastaba. Programos veikimo spartos analizė pateikta excel faile.
+### Programos spartos analizė
+
+![Lentelėje vaizduojama programos spartos analizė.](programos-spartos-analize.png)
