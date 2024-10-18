@@ -59,7 +59,6 @@ void inputManual(std::vector<Studentas> &studentai, int studSk, int vidMed){
             }
         }
         studentai.push_back(Lok);
-        std::cout << "Studento informacijos saugojimo vieta: " << &Lok << std::endl;
         clean(Lok);
     }
 }
@@ -112,7 +111,6 @@ void inputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed
             }
         }
         studentaiList.push_back(Lok);
-        std::cout << "Studento informacijos saugojimo vieta: " << &Lok << std::endl;
         clean(Lok);
     }
 }

@@ -90,6 +90,16 @@ int main(){
             outputManual(i, vidMed);
         }
     }
+
+    if (vektSar == 0){
+        for (int i=0; i<studSk; i++){
+            std::cout << "Studento saugojimo vieta atmintyje: " << &studentai.at(i) << std::endl;
+        }
+    } else {
+        for (auto& i : studentaiList){
+            std::cout << "Studento saugojimo vieta atmintyje: " << &i << std::endl;
+        }
+    }
     
     
     return 0;
