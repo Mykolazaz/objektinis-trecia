@@ -11,6 +11,112 @@ double mediana(std::vector<int> &v){
     }
 }
 
+void newInputManual(std::vector<Studentas> &studentai, int studSk, int vidMed){
+    for (int i=0; i<studSk; i++){
+        int arRandom;
+        std::string input;
+        bool praeitasBuvoTuscias = false;
+        Studentas Lok;
+
+        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << std::endl;
+        std::cin >> arRandom;
+
+        std::cout << "Įveskite studento vardą ir pavardę:" << std::endl;
+        std::cin >> Lok.vardas >> Lok.pavarde;
+        
+        if (arRandom == 0){
+            std::cout << "Įveskite egzamino rezultatą: " << std::endl;
+            std::cin >> Lok.egzamRez;
+            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+
+            while (true) {
+                std::getline(std::cin, input);
+
+                if (input.empty()) {
+                    if (praeitasBuvoTuscias) {
+                        break;
+                    }
+                    praeitasBuvoTuscias = true;
+                } else {
+                    praeitasBuvoTuscias = false;
+
+                    std::stringstream ss(input);
+                    int skaicius;
+                    
+                    while (ss >> skaicius) {
+                        Lok.tarpRez.push_back(skaicius);
+                    }
+                }
+            }
+        } else {
+            std::random_device rd;
+            std::mt19937 mt(rd());
+            std::uniform_int_distribution<int> dist(0, 10);
+
+            Lok.egzamRez = dist(mt);
+            for (int i = 0; i < 15; i++){
+                Lok.tarpRez.push_back(dist(mt));
+            }
+        }
+        studentai.push_back(Lok);
+        std::cout << "Studento informacijos saugojimo vieta: " << &Lok << std::endl;
+        clean(Lok);
+    }
+}
+
+void newInputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed){
+    for (int i=0; i<studSk; i++){
+        int arRandom;
+        std::string input;
+        bool praeitasBuvoTuscias = false;
+        Studentas Lok;
+
+        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << std::endl;
+        std::cin >> arRandom;
+
+        std::cout << "Įveskite studento vardą ir pavardę:" << std::endl;
+        std::cin >> Lok.vardas >> Lok.pavarde;
+        
+        if (arRandom == 0){
+            std::cout << "Įveskite egzamino rezultatą: " << std::endl;
+            std::cin >> Lok.egzamRez;
+            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+
+            while (true) {
+                std::getline(std::cin, input);
+
+                if (input.empty()) {
+                    if (praeitasBuvoTuscias) {
+                        break;
+                    }
+                    praeitasBuvoTuscias = true;
+                } else {
+                    praeitasBuvoTuscias = false;
+
+                    std::stringstream ss(input);
+                    int skaicius;
+                    
+                    while (ss >> skaicius) {
+                        Lok.tarpRez.push_back(skaicius);
+                    }
+                }
+            }
+        } else {
+            std::random_device rd;
+            std::mt19937 mt(rd());
+            std::uniform_int_distribution<int> dist(0, 10);
+
+            Lok.egzamRez = dist(mt);
+            for (int i = 0; i < 5; i++){
+                Lok.tarpRez.push_back(dist(mt));
+            }
+        }
+        studentaiList.push_back(Lok);
+        std::cout << "Studento informacijos saugojimo vieta: " << &Lok << std::endl;
+        clean(Lok);
+    }
+}
+
 void inputManual(Studentas &Lok){
     int arRandom;
     std::string input;

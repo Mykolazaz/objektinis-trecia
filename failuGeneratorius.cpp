@@ -79,11 +79,9 @@ void inputSplitSort(std::string failoPav, int rusiavKateg) {
     failoPav = failoPav + ".txt";
     std::ifstream fr(failoPav);
     std::string eilute;
-
     std::getline(fr, eilute);
 
     std::vector<Studentas> visiStudentai;
-
     visiStudentai.reserve(1000000);
 
     while (std::getline(fr, eilute)) {
@@ -198,7 +196,6 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
     failoPav = failoPav + ".txt";
     std::ifstream fr(failoPav);
     std::string eilute;
-
     std::getline(fr, eilute);
 
     std::list<Studentas> visiStudentaiList;

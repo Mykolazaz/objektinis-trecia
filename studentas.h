@@ -14,6 +14,8 @@ struct Studentas{
 };
 
 void inputManual(Studentas &Lok);
+void newInputManual(std::vector<Studentas> &studentai, int studSk, int vidMed);
+void newInputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed);
 void inputScan(std::vector<Studentas> &studentai);
 void outputManual(Studentas Lok, int vidMed);
 void outputScan(std::vector<Studentas> &studentai);

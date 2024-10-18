@@ -4,9 +4,10 @@
 
 int main(){
     std::vector<Studentas> studentai;
+    std::list<Studentas> studentaiList;
     Studentas laikinasStud;
 
-    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg;
+    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, vektSar;
     std::string failoPav;
     
     try{
@@ -41,7 +42,7 @@ int main(){
 
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
         inputSplitSort(failoPav, rusiavKateg);
-        //inputSplitSortList(failoPav, rusiavKateg);
+        inputSplitSortList(failoPav, rusiavKateg);
         
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
@@ -63,10 +64,13 @@ int main(){
     std::cout << "Norite matyti vidurkį (0) ar medianą (1)?" << std::endl;
     std::cin >> vidMed;
 
-    for (int i=0; i<studSk; i++){
-        inputManual(laikinasStud);
-        studentai.push_back(laikinasStud);
-        clean(laikinasStud);
+    std::cout << "Norite informaciją saugoti vektoriuje (0) ar sąraše (1)?:" << std::endl;
+    std::cin >> vektSar;
+
+    if (vektSar == 0){
+        newInputManual(studentai, studSk, vidMed);
+    } else {
+        newInputManualList(studentaiList, studSk, vidMed);
     }
 
     if (vidMed == 0){
@@ -77,9 +81,16 @@ int main(){
         std::cout << "-------------------------------------------------------" << std::endl;
     }
     
-    for (int i=0; i<studSk; i++){
-        outputManual(studentai.at(i), vidMed);
+    if (vektSar == 0){
+        for (int i=0; i<studSk; i++){
+            outputManual(studentai.at(i), vidMed);
+        }
+    } else {
+        for (auto& i : studentaiList){
+            outputManual(i, vidMed);
+        }
     }
+    
     
     return 0;
 }
