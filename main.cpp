@@ -68,9 +68,9 @@ int main(){
     std::cin >> vektSar;
 
     if (vektSar == 0){
-        newInputManual(studentai, studSk, vidMed);
+        inputManual(studentai, studSk, vidMed);
     } else {
-        newInputManualList(studentaiList, studSk, vidMed);
+        inputManualList(studentaiList, studSk, vidMed);
     }
 
     if (vidMed == 0){
