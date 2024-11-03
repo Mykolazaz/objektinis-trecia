@@ -344,6 +344,11 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
         visiStudentai.push_back(Lok);
     }
+
+    if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
+        visiStudentai.shrink_to_fit();
+    }
+
     fr.close();
 
     // Failo nuskaitymo pabaiga
@@ -381,7 +386,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     // }
     // visiStudentai.clear();
 
-       switch (testStrat) {
+    switch (testStrat) {
         case 1: {
             for (const auto &student : visiStudentai) {
                 if (student.galutinis >= 5.0) {
@@ -391,13 +396,35 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
                 }
             }
             visiStudentai.clear();
+
+            // Studentų dalijimo pabaiga (1)
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
+            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
+            
+            break;
+        }
+        case 2: {
+            auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(),
+                             [&kvaili](const Studentas& student) {
+                                 if (student.galutinis < 5.0) {
+                                     kvaili.push_back(student);
+                                     return true;
+                                 }
+                                 return false;
+                             });
+
+            visiStudentai.erase(it, visiStudentai.end());
+            
+            // Studentų dalijimo pabaiga (2)
+            std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
+            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
+            
+            break;
+        }
+        case 3: {
             break;
         }
     }
-
-    // Studentų dalijimo pabaiga
-    std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
-    std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
     
     // "Protingų" studentų rašymo pradžia
     uzdLaikas.reset();
