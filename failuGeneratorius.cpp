@@ -434,6 +434,27 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             break;
         }
         case 3: {
+            if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
+                auto iter = std::stable_partition(visiStudentai.begin(), visiStudentai.end(),
+                    [](const Studentas &s) { return s.galutinis >= 5.0; });
+                
+                kvaili.insert(kvaili.end(), iter, visiStudentai.end());
+                visiStudentai.erase(iter, visiStudentai.end());
+            } else {
+                auto iter = visiStudentai.begin();
+                while (iter != visiStudentai.end()) {
+                    if (iter->galutinis < 5.0) {
+                        kvaili.push_back(*iter);
+                        iter = visiStudentai.erase(iter);
+                    } else {
+                        ++iter;
+                    }
+                }
+            }
+            
+            // Studentų dalijimo pabaiga (3)
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
+            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
             
             break;
         }
