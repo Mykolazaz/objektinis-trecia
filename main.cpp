@@ -32,7 +32,7 @@ int main(){
     // Failo testavimas
     } else if (ivedGener == 2){
         std::cout << "Kurią testavimo strategiją norite naudoti?" << std::endl;
-        std::cout << "Bendra (0), 1-a strategija (1), 2-a strategija (2), 3-ia strategija (3)" << std::endl;
+        std::cout << "1-a strategija (1), 2-a strategija (2), 3-ia strategija (3)" << std::endl;
         std::cin >> testStrat;
 
         std::cout << "Kurį failą norite testuoti?" << std::endl;
@@ -45,8 +45,8 @@ int main(){
         std::cin >> rusiavKateg;
 
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
-        inputSplitSort(failoPav, rusiavKateg, true);
-        inputSplitSort(failoPav, rusiavKateg, false);
+        inputSplitSort(failoPav, rusiavKateg, true, testStrat);
+        inputSplitSort(failoPav, rusiavKateg, false, testStrat);
         //inputSplitSort(failoPav, rusiavKateg);
         //inputSplitSortList(failoPav, rusiavKateg);
         

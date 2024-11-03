@@ -306,7 +306,7 @@ void inputSplitSortList(std::string failoPav, int rusiavKateg) {
 */
 
 template <typename Container>
-void inputSplitSortImpl(std::string failoPav, int rusiavKateg) {
+void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     Timer bendrLaikas;
 
     // Failo nuskaitymo pradžia
@@ -349,14 +349,14 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg) {
     // Failo nuskaitymo pabaiga
     std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << std::endl;
 
+    // Visų studentų rikiavimo pradžia
+    uzdLaikas.reset();
+
     auto sortFunction = [rusiavKateg](const Studentas &a, const Studentas &b) {
         if (rusiavKateg == 0) return a.vardas < b.vardas;
         if (rusiavKateg == 1) return a.pavarde < b.pavarde;
         return a.galutinis > b.galutinis;
     };
-
-    // Visų studentų rikiavimo pradžia
-    uzdLaikas.reset();
 
     if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
         std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
@@ -372,17 +372,32 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg) {
 
     Container protingi, kvaili;
 
-    for (const auto &student : visiStudentai) {
-        if (student.galutinis >= 5.0) {
-            protingi.push_back(student);
-        } else {
-            kvaili.push_back(student);
+    // for (const auto &student : visiStudentai) {
+    //     if (student.galutinis >= 5.0) {
+    //         protingi.push_back(student);
+    //     } else {
+    //         kvaili.push_back(student);
+    //     }
+    // }
+    // visiStudentai.clear();
+
+       switch (testStrat) {
+        case 1: {
+            for (const auto &student : visiStudentai) {
+                if (student.galutinis >= 5.0) {
+                    protingi.push_back(student);
+                } else {
+                    kvaili.push_back(student);
+                }
+            }
+            visiStudentai.clear();
+            break;
         }
     }
-    visiStudentai.clear();
 
     // Studentų dalijimo pabaiga
     std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
+    std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
     
     // "Protingų" studentų rašymo pradžia
     uzdLaikas.reset();
@@ -429,10 +444,10 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg) {
     std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << std::endl;
 }
 
-void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector = true) {
+void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector = true, int testStrat = 1) {
     if (useVector) {
-        inputSplitSortImpl<std::vector<Studentas>>(failoPav, rusiavKateg);
+        inputSplitSortImpl<std::vector<Studentas>>(failoPav, rusiavKateg, testStrat);
     } else {
-        inputSplitSortImpl<std::list<Studentas>>(failoPav, rusiavKateg);
+        inputSplitSortImpl<std::list<Studentas>>(failoPav, rusiavKateg, testStrat);
     }
 }

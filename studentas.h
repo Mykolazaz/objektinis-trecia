@@ -20,7 +20,7 @@ void outputManual(Studentas Lok, int vidMed);
 void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
 void generateInfo(int studGenSk, int ndGenSk);
-void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector);
+void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector, int testStrat);
 // void inputSplitSortList(std::string failoPav, int rusiavKateg);
 
 #endif
