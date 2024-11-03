@@ -404,16 +404,28 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             break;
         }
         case 2: {
-            auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(),
-                             [&kvaili](const Studentas& student) {
-                                 if (student.galutinis < 5.0) {
-                                     kvaili.push_back(student);
-                                     return true;
-                                 }
-                                 return false;
-                             });
+            // auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(),
+            //                  [&kvaili](const Studentas& student) {
+            //                      if (student.galutinis < 5.0) {
+            //                          kvaili.push_back(student);
+            //                          return true;
+            //                      }
+            //                      return false;
+            //                  });
 
-            visiStudentai.erase(it, visiStudentai.end());
+            // visiStudentai.erase(it, visiStudentai.end());
+
+            auto it = visiStudentai.begin();
+            while (it != visiStudentai.end()) {
+                if (it->galutinis < 5.0) {
+                    kvaili.push_back(*it);
+                    it = visiStudentai.erase(it);
+                } else {
+                    ++it;
+                }
+            }
+            protingi = std::move(visiStudentai);
+            break;
             
             // Studentų dalijimo pabaiga (2)
             std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
@@ -422,8 +434,10 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             break;
         }
         case 3: {
+            
             break;
         }
+
     }
     
     // "Protingų" studentų rašymo pradžia
