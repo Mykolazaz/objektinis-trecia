@@ -152,6 +152,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     // visiStudentai.clear();
 
     switch (testStrat) {
+        // Studentai skaidomi į du naujus to paties tipo konteinerius
         case 1: {
             for (const auto &student : visiStudentai) {
                 if (student.galutinis >= 5.0) {
@@ -168,6 +169,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             
             break;
         }
+        // Studentai skaidomi panaudojant tik vieną naują konteinerį
         case 2: {
             // auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(),
             //                  [&kvaili](const Studentas& student) {
@@ -198,6 +200,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             
             break;
         }
+        // Studentai rušiuojami greičiausiais metodais (taikomi tik vektoriui)
         case 3: {
             if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
                 auto iter = std::stable_partition(visiStudentai.begin(), visiStudentai.end(),

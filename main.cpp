@@ -47,8 +47,6 @@ int main(){
         std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
         inputSplitSort(failoPav, rusiavKateg, true, testStrat);
         inputSplitSort(failoPav, rusiavKateg, false, testStrat);
-        //inputSplitSort(failoPav, rusiavKateg);
-        //inputSplitSortList(failoPav, rusiavKateg);
         
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
@@ -106,7 +104,6 @@ int main(){
             std::cout << "Studento saugojimo vieta atmintyje: " << &i << std::endl;
         }
     }
-    
     
     return 0;
 }
