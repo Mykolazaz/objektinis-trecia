@@ -7,7 +7,7 @@ class Timer {
     using durationDouble = std::chrono::duration<double>;
     std::chrono::time_point<hrClock> start;
   public:
-    Timer() : start{ hrClock::now() } {}
+    Timer() : start{ hrClock::now() } {};
     void reset() {
       start = hrClock::now();
     }
@@ -17,7 +17,7 @@ class Timer {
 };
 
 void generateInfo(int studGenSk, int ndGenSk){
-    std::cout << "Failo generavimas pradėtas." << std::endl;
+    std::cout << "Failo generavimas pradėtas..." << std::endl;
 
     std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
     std::ofstream fw(failoPav, std::ios::binary);
