@@ -22,7 +22,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Generuoja studentų informaciją: namų darbai ir egzamino rezultatai
 - Leidžia duomenis įvesti rankomis arba nuskaityti iš failo
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
-- Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į atskirus failus
+- *Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į atskirus failus*
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono.
 
@@ -32,7 +32,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Leidžia duomenis įvesti rankomis arba nuskaityti iš failo
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
 - Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į atskirus failus
-- Fiksuoja programos spartos laiką vector ir list konteineriams: įrašų generavimas, nuskaitymas, rikiavimas, studentų įrašų išskirtymas į "protingus" ir "kvailus"
+- *Fiksuoja programos spartos laiką vector ir list konteineriams: įrašų generavimas, nuskaitymas, rikiavimas, studentų įrašų išskirtymas į "protingus" ir "kvailus"*
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
@@ -45,7 +45,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
 - Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į atskirus failus
 - Fiksuoja programos spartos laiką vector ir list konteineriams: įrašų generavimas, nuskaitymas, rikiavimas, studentų įrašų išskirtymas į "protingus" ir "kvailus"
-- Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą pritaikant efektyvius STL algoritmus
+- *Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą pritaikant efektyvius STL algoritmus*
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 

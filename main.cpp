@@ -7,8 +7,9 @@ int main(){
     std::list<Studentas> studentaiList;
     Studentas laikinasStud;
 
-    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, vektSar, testStrat;
+    int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, vektSar, testStrat, arVektorius;
     std::string failoPav;
+    bool arVektoriusBool;
     
     try{
         std::cout << "Norite įvesti (0), generuoti (1) ar testuoti (2)?: " << std::endl;
@@ -35,6 +36,13 @@ int main(){
         std::cout << "1-a strategija (1), 2-a strategija (2), 3-ia strategija (3)" << std::endl;
         std::cin >> testStrat;
 
+        std::cout << "Norite naudoti vektorių (0) ar sąrašą (1)?" << std::endl;
+        std::cin >> arVektorius;
+
+        if (arVektorius == 0){
+            arVektoriusBool = true;
+        } else arVektoriusBool = false;
+
         std::cout << "Kurį failą norite testuoti?" << std::endl;
         system("ls *.txt"); //naudoti 'dir' windows platformai
 
@@ -45,8 +53,7 @@ int main(){
         std::cin >> rusiavKateg;
 
         std::cout << "Failo apdorojimas pradėtas..." << "\n" << std::endl;
-        inputSplitSort(failoPav, rusiavKateg, true, testStrat);
-        inputSplitSort(failoPav, rusiavKateg, false, testStrat);
+        inputSplitSort(failoPav, rusiavKateg, arVektorius, testStrat);
         
         std::cout << "Failo apdorojimas baigtas." << std::endl;
         exit(EXIT_SUCCESS);
