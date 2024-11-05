@@ -11,23 +11,23 @@ double mediana(std::vector<int> &v){
     }
 }
 
-void inputManual(std::vector<Studentas> &studentai, int studSk, int vidMed){
+void inputManual(std::vector<Studentas> &studentai, int studSk){
     for (int i=0; i<studSk; i++){
         int arRandom;
         std::string input;
         bool praeitasBuvoTuscias = false;
         Studentas Lok;
 
-        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << std::endl;
+        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << "\n";
         std::cin >> arRandom;
 
-        std::cout << "Įveskite studento vardą ir pavardę:" << std::endl;
+        std::cout << "Įveskite studento vardą ir pavardę:" << "\n";
         std::cin >> Lok.vardas >> Lok.pavarde;
         
         if (arRandom == 0){
-            std::cout << "Įveskite egzamino rezultatą: " << std::endl;
+            std::cout << "Įveskite egzamino rezultatą: " << "\n";
             std::cin >> Lok.egzamRez;
-            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << "\n";
 
             while (true) {
                 std::getline(std::cin, input);
@@ -54,7 +54,7 @@ void inputManual(std::vector<Studentas> &studentai, int studSk, int vidMed){
             std::uniform_int_distribution<int> dist(0, 10);
 
             Lok.egzamRez = dist(mt);
-            for (int i = 0; i < 15; i++){
+            for (int index = 0; index < 15; index++){
                 Lok.tarpRez.push_back(dist(mt));
             }
         }
@@ -63,23 +63,23 @@ void inputManual(std::vector<Studentas> &studentai, int studSk, int vidMed){
     }
 }
 
-void inputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed){
+void inputManualList(std::list<Studentas> &studentaiList, int studSk){
     for (int i=0; i<studSk; i++){
         int arRandom;
         std::string input;
         bool praeitasBuvoTuscias = false;
         Studentas Lok;
 
-        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << std::endl;
+        std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << "\n";
         std::cin >> arRandom;
 
-        std::cout << "Įveskite studento vardą ir pavardę:" << std::endl;
+        std::cout << "Įveskite studento vardą ir pavardę:" << "\n";
         std::cin >> Lok.vardas >> Lok.pavarde;
         
         if (arRandom == 0){
-            std::cout << "Įveskite egzamino rezultatą: " << std::endl;
+            std::cout << "Įveskite egzamino rezultatą: " << "\n";
             std::cin >> Lok.egzamRez;
-            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << std::endl;
+            std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << "\n";
 
             while (true) {
                 std::getline(std::cin, input);
@@ -106,7 +106,7 @@ void inputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed
             std::uniform_int_distribution<int> dist(0, 10);
 
             Lok.egzamRez = dist(mt);
-            for (int i = 0; i < 5; i++){
+            for (int index = 0; index < 5; index++){
                 Lok.tarpRez.push_back(dist(mt));
             }
         }
@@ -151,13 +151,13 @@ void outputManual(Studentas Lok, int vidMed){
 
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
-        galut_vidurkis << std::endl;
+        galut_vidurkis << "\n";
     } else {
         double galut_med = 0.4*(mediana(Lok.tarpRez)) + 0.6*Lok.egzamRez;
 
         std::cout << std::left << std::setw(20) << Lok.pavarde
         << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-        galut_med << std::endl;
+        galut_med << "\n";
     }
     
 }
@@ -170,8 +170,8 @@ void outputScan(std::vector<Studentas> &studentai){
     
     std::ofstream fw("kursiokai_bendra.txt");
 
-    fw << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
-    fw << "---------------------------------------------------------------------------" << std::endl;
+    fw << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << "\n";
+    fw << "---------------------------------------------------------------------------" << "\n";
 
     for (const Studentas &stud : studentai){
         try {
@@ -187,15 +187,15 @@ void outputScan(std::vector<Studentas> &studentai){
             double galut_med =0.4*mediana(visiRez) + 0.6*stud.egzamRez;
 
             fw << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            galut_vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << galut_med << std::endl;
+            galut_vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << galut_med << "\n";
         }
 
         catch (const std::exception& e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
+        std::cerr << "ERROR: " << e.what() << "\n";
         exit(EXIT_FAILURE);
         }
     }
-    std::cout << "Numatytasis failas nuskaitytas ir studentai surikiuoti pagal pavardes." << std::endl;
+    std::cout << "Numatytasis failas nuskaitytas ir studentai surikiuoti pagal pavardes." << "\n";
     fw.close();
 }
 

@@ -13,13 +13,13 @@ struct Studentas{
     double galutinis;
 };
 
-void inputManual(std::vector<Studentas> &studentai, int studSk, int vidMed);
-void inputManualList(std::list<Studentas> &studentaiList, int studSk, int vidMed);
+void inputManual(std::vector<Studentas> &studentai, int studSk);
+void inputManualList(std::list<Studentas> &studentaiList, int studSk);
 void inputScan(std::vector<Studentas> &studentai);
 void outputManual(Studentas Lok, int vidMed);
 void outputScan(std::vector<Studentas> &studentai);
 void clean(Studentas &Lok);
 void generateInfo(int studGenSk, int ndGenSk);
-void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector, int testStrat);
+void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat);
 
 #endif

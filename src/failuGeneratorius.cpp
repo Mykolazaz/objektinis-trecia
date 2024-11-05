@@ -17,7 +17,7 @@ class Timer {
 };
 
 void generateInfo(int studGenSk, int ndGenSk){
-    std::cout << "Failo generavimas pradėtas..." << std::endl;
+    std::cout << "Failo generavimas pradėtas..." << "\n";
 
     std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
     std::ofstream fw(failoPav, std::ios::binary);
@@ -35,7 +35,7 @@ void generateInfo(int studGenSk, int ndGenSk){
         buffer << "ND" << std::setw(2) << std::left << i << " ";
     }
 
-    buffer << std::setw(10) << "Egzaminimas" << std::endl;
+    buffer << std::setw(10) << "Egzaminimas" << "\n";
     
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -53,7 +53,7 @@ void generateInfo(int studGenSk, int ndGenSk){
             buffer << std::setw(5) << dist(mt);    
         }
 
-        buffer << std::setw(10) << dist(mt) << std::endl;
+        buffer << std::setw(10) << dist(mt) << "\n";
 
         if (buffer.tellp() > 64 * 1024 * 1024) {
             fw << buffer.rdbuf();
@@ -66,8 +66,8 @@ void generateInfo(int studGenSk, int ndGenSk){
     
     fw.close();
 
-    std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << generLaikas.elapsed() << std::endl;
-    std::cout << "Failo generavimas baigtas." << std::endl;
+    std::cout << std::to_string(studGenSk-1) + " įrašų generavimas: " << generLaikas.elapsed() << "\n";
+    std::cout << "Failo generavimas baigtas." << "\n";
 }
 
 template <typename Container>
@@ -117,7 +117,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     fr.close();
 
     // Failo nuskaitymo pabaiga
-    std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << std::endl;
+    std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << "\n";
 
     // Visų studentų rikiavimo pradžia
     uzdLaikas.reset();
@@ -135,7 +135,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     }
     
     // Visų studentų rikiavimo pabaiga
-    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << uzdLaikas.elapsed() << std::endl;
+    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << uzdLaikas.elapsed() << "\n";
 
     // Studentų dalijimo pradžia
     uzdLaikas.reset();
@@ -155,24 +155,13 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             visiStudentai.clear();
 
             // Studentų dalijimo pabaiga (1)
-            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
-            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
             
             break;
         }
         // Studentai skaidomi panaudojant tik vieną naują konteinerį
         case 2: {
-            // auto it = std::remove_if(visiStudentai.begin(), visiStudentai.end(),
-            //                  [&kvaili](const Studentas& student) {
-            //                      if (student.galutinis < 5.0) {
-            //                          kvaili.push_back(student);
-            //                          return true;
-            //                      }
-            //                      return false;
-            //                  });
-
-            // visiStudentai.erase(it, visiStudentai.end());
-
             auto it = visiStudentai.begin();
             while (it != visiStudentai.end()) {
                 if (it->galutinis < 5.0) {
@@ -184,8 +173,8 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             }
 
             // Studentų dalijimo pabaiga (2)
-            std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
-            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
+            std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
             
             break;
         }
@@ -210,8 +199,8 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
             }
             
             // Studentų dalijimo pabaiga (3)
-            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
-            std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
             
             break;
         }
@@ -225,18 +214,18 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     std::ofstream fwProtingi(failasProtingi);
     
     fwProtingi << std::left << std::setw(20) << "Pavarde"
-               << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;
-    fwProtingi << "-------------------------------------------------------" << std::endl;
+               << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << "\n";
+    fwProtingi << "-------------------------------------------------------" << "\n";
 
     if (testStrat == 2 || testStrat == 3){
         for (const auto &student : visiStudentai) {
         fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
-                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << "\n";
         }
     } else {
         for (const auto &student : protingi) {
         fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
-                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << "\n";
         }
     }
 
@@ -244,7 +233,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     protingi.clear();
 
     // "Protingų" studentų rašymo pabaiga
-    std::cout << "'Protingų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << std::endl;
+    std::cout << "'Protingų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n";
 
     // "Kvailų" studentų rašymo pradžia
     uzdLaikas.reset();
@@ -253,25 +242,25 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     std::ofstream fwKvaili(failasKvaili);
 
     fwKvaili << std::left << std::setw(20) << "Pavarde"
-             << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;
-    fwKvaili << "-------------------------------------------------------" << std::endl;
+             << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << "\n";
+    fwKvaili << "-------------------------------------------------------" << "\n";
 
     for (const auto &student : kvaili) {
         fwKvaili << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
-                 << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+                 << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << "\n";
     }
 
     fwKvaili.close();
     kvaili.clear();
 
     // "Kvailų" studentų rašymo pabaiga
-    std::cout << "'Kvailų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n" << std::endl;
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n" << "\n";
 
-    std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << std::endl;
+    std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << "\n";
 }
 
-void inputSplitSort(std::string failoPav, int rusiavKateg, bool useVector = true, int testStrat = 1) {
-    if (useVector) {
+void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat) {
+    if (useVector == 1) {
         inputSplitSortImpl<std::vector<Studentas>>(failoPav, rusiavKateg, testStrat);
     } else {
         inputSplitSortImpl<std::list<Studentas>>(failoPav, rusiavKateg, testStrat);
