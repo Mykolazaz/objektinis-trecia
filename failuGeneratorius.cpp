@@ -142,15 +142,6 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
     Container protingi, kvaili;
 
-    // for (const auto &student : visiStudentai) {
-    //     if (student.galutinis >= 5.0) {
-    //         protingi.push_back(student);
-    //     } else {
-    //         kvaili.push_back(student);
-    //     }
-    // }
-    // visiStudentai.clear();
-
     switch (testStrat) {
         // Studentai skaidomi į du naujus to paties tipo konteinerius
         case 1: {
@@ -191,9 +182,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
                     ++it;
                 }
             }
-            protingi = std::move(visiStudentai);
-            break;
-            
+
             // Studentų dalijimo pabaiga (2)
             std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << std::endl;
             std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << std::endl;
@@ -239,9 +228,16 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
                << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << std::endl;
     fwProtingi << "-------------------------------------------------------" << std::endl;
 
-    for (const auto &student : protingi) {
+    if (testStrat == 2 || testStrat == 3){
+        for (const auto &student : visiStudentai) {
         fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
                    << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+        }
+    } else {
+        for (const auto &student : protingi) {
+        fwProtingi << std::left << std::setw(20) << student.pavarde << std::setw(20) << student.vardas 
+                   << std::setw(20) << std::setprecision(2) << std::fixed << student.galutinis << std::endl;
+        }
     }
 
     fwProtingi.close();

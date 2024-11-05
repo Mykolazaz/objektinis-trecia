@@ -44,7 +44,7 @@ int main(){
         std::cout << "Norite rušiuoti pagal vardą (0), pavardę (1), galut. balą (2):" << std::endl;
         std::cin >> rusiavKateg;
 
-        std::cout << "Failo apdorojimas pradėtas." << "\n" << std::endl;
+        std::cout << "Failo apdorojimas pradėtas..." << "\n" << std::endl;
         inputSplitSort(failoPav, rusiavKateg, true, testStrat);
         inputSplitSort(failoPav, rusiavKateg, false, testStrat);
         
