@@ -1,6 +1,9 @@
 ### Programos naudojimo instrukcija
 
-1. 
+1. Atsisiųsti v1.0 release paketą;
+2. Atsidaryti terminalą ir jame pakeisti dabartinę direktoriją į atsisiųsto (un-zip'into) kodo aplanką ("cd ./objektinis-pirma-obj-X" ar panašiai);
+3. Terminale paleisti run.sh script'ą su komanda "./run.sh". *PASTABA*: jeigu nepavyksta, panaudoti komandą "chmod +x run.sh";
+4. Programai pasileidus, skaityti ekrane pasirodžiusias instrukcijas ir jomis vadovautis.
 
 ### Testavimo įranga:
 - CPU: Apple M1
@@ -36,7 +39,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
-![Lentelėje vaizduojama programos spartos analizė.](programos-spartos-analize-0.png)
+![Lentelėje vaizduojama programos spartos analizė.](./spartos-analize/programos-spartos-analize-0.png)
 
 #### Versija 1.0
 
@@ -49,8 +52,8 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
-![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 1 strategiją.](programos-spartos-analize-1.png)
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 1 strategiją.](./spartos-analize/programos-spartos-analize-1.png)
 
-![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 2 strategiją.](programos-spartos-analize-2.png)
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 2 strategiją.](./spartos-analize/programos-spartos-analize-2.png)
 
-![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 3 strategiją.](programos-spartos-analize-3.png)
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 3 strategiją.](./spartos-analize/programos-spartos-analize-3.png)
