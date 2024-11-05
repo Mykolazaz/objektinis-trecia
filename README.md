@@ -36,7 +36,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
-![Lentelėje vaizduojama programos spartos analizė.](programos-spartos-analize.png)
+![Lentelėje vaizduojama programos spartos analizė.](programos-spartos-analize-0.png)
 
 #### Versija 1.0
 
@@ -48,3 +48,9 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą pritaikant efektyvius STL algoritmus
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
+
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 1 strategiją.](programos-spartos-analize-1.png)
+
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 2 strategiją.](programos-spartos-analize-2.png)
+
+![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 3 strategiją.](programos-spartos-analize-3.png)
