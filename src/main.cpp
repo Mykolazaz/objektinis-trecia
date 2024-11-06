@@ -5,7 +5,6 @@
 int main(){
     std::vector<Studentas> studentai;
     std::list<Studentas> studentaiList;
-    Studentas laikinasStud;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, vektSar, testStrat, arVektorius;
     std::string failoPav;
@@ -31,8 +30,8 @@ int main(){
 
     // Failo testavimas
     } else if (ivedGener == 2){
-        std::cout << "Kurią testavimo strategiją norite naudoti?" << "\n";
-        std::cout << "1-a strategija (1), 2-a strategija (2), 3-ia strategija (3)" << "\n";
+        std::cout << "Kurią testavimo strategiją norite naudoti?" << "\n"
+                  << "1-a strategija (1), 2-a strategija (2), 3-ia strategija (3)" << "\n";
         std::cin >> testStrat;
 
         std::cout << "Norite naudoti sąrašą (0) ar vektorių (1)?" << "\n";
@@ -49,8 +48,8 @@ int main(){
 
         std::cout << "Failo apdorojimas pradėtas..." << "\n" << "\n";
         inputSplitSort(failoPav, rusiavKateg, arVektorius, testStrat);
-        
         std::cout << "Failo apdorojimas baigtas." << "\n";
+        
         exit(EXIT_SUCCESS);
     }
 
