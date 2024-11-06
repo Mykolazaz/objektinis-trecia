@@ -115,8 +115,12 @@ void inputManualList(std::list<Studentas> &studentaiList, int studSk){
     }
 }
 
-void inputScan(std::vector<Studentas> &studentai) {
-    std::ifstream fr("kursiokai.txt");
+void inputScan(std::vector<Studentas> &studentai, std::string failoPav) {
+    std::cout << "Failo apdorojimas pradėtas..." << "\n";
+    
+    failoPav = failoPav + ".txt";
+    std::ifstream fr(failoPav);
+
     std::string eilute;
 
     std::getline(fr, eilute);
@@ -128,14 +132,14 @@ void inputScan(std::vector<Studentas> &studentai) {
         iss >> Lok.pavarde >> Lok.vardas;
 
         int balas;
+
         while (iss >> balas) {
-            Lok.balai.push_back(balas);
+            Lok.tarpRez.push_back(balas);
         }
 
-        if (!Lok.balai.empty()) {
-            Lok.egzamRez = Lok.balai.back();
-            Lok.balai.pop_back();
-            Lok.tarpRez = Lok.balai;
+        if (!Lok.tarpRez.empty()) {
+            Lok.egzamRez = Lok.tarpRez.back();
+            Lok.tarpRez.pop_back();
         }
 
         studentai.push_back(Lok);
@@ -195,7 +199,7 @@ void outputScan(std::vector<Studentas> &studentai){
         exit(EXIT_FAILURE);
         }
     }
-    std::cout << "Numatytasis failas nuskaitytas ir studentai surikiuoti pagal pavardes." << "\n";
+    std::cout << "Pasirinktas failas nuskaitytas ir studentai surikiuoti pagal pavardes." << "\n";
     fw.close();
 }
 

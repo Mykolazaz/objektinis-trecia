@@ -16,7 +16,7 @@ class Timer {
     }
 };
 
-void generateInfo(int studGenSk, int ndGenSk){
+void generateEntries(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas pradėtas..." << "\n";
 
     std::string failoPav = "info" + std::to_string(studGenSk) + ".txt";
@@ -94,18 +94,17 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
         iss >> Lok.pavarde >> Lok.vardas;
 
         int balas;
+
         while (iss >> balas) {
-            Lok.balai.push_back(balas);
+            Lok.tarpRez.push_back(balas);
         }
 
-        if (!Lok.balai.empty()) {
-            Lok.egzamRez = Lok.balai.back();
-            Lok.balai.pop_back();
-            Lok.tarpRez = Lok.balai;
+        if (!Lok.tarpRez.empty()) {
+            Lok.egzamRez = Lok.tarpRez.back();
+            Lok.tarpRez.pop_back();
         }
 
-        double galut_vidurkis = 0.4 * (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0) / Lok.tarpRez.size()) + 0.6 * Lok.egzamRez;
-        Lok.galutinis = galut_vidurkis;
+        Lok.galutinis = 0.4 * (accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0) / Lok.tarpRez.size()) + 0.6 * Lok.egzamRez;
 
         visiStudentai.push_back(Lok);
     }
@@ -187,13 +186,13 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
                 kvaili.insert(kvaili.end(), iter, visiStudentai.end());
                 visiStudentai.erase(iter, visiStudentai.end());
             } else {
-                auto iter = visiStudentai.begin();
-                while (iter != visiStudentai.end()) {
-                    if (iter->galutinis < 5.0) {
-                        kvaili.push_back(*iter);
-                        iter = visiStudentai.erase(iter);
+                auto it = visiStudentai.begin();
+                while (it != visiStudentai.end()) {
+                    if (it->galutinis < 5.0) {
+                        kvaili.push_back(*it);
+                        it = visiStudentai.erase(it);
                     } else {
-                        ++iter;
+                        ++it;
                     }
                 }
             }

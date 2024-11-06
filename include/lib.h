@@ -11,5 +11,6 @@
 #include <stdexcept> // try catch
 #include <chrono> // funkcijos darbo laiko fiksavimas
 #include <list>
+#include <numeric>
 
 #endif

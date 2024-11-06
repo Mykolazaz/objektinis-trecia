@@ -50,7 +50,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Fiksuoja programos spartos laiką vector ir list konteineriams: įrašų generavimas, nuskaitymas, rikiavimas, studentų įrašų išskirtymas į "protingus" ir "kvailus"
 - *Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą ir pritaikant efektyvius STL algoritmus*
 
-Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
+Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list, numeric.
 
 ![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 1 strategiją.](./spartos-analize/programos-spartos-analize-1.png)
 

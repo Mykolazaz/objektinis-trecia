@@ -25,7 +25,7 @@ int main(){
     if (ivedGener == 1){
         std::cout << "Kiek studentų ir namų darbų generuoti? (2 skaičiai vienoje eilutėje):" << "\n";
         std::cin >> studGenSk >> ndGenSk;
-        generateInfo(studGenSk, ndGenSk);
+        generateEntries(studGenSk, ndGenSk);
         exit(EXIT_SUCCESS);
 
     // Failo testavimas
@@ -49,7 +49,7 @@ int main(){
         std::cout << "Failo apdorojimas pradėtas..." << "\n" << "\n";
         inputSplitSort(failoPav, rusiavKateg, arVektorius, testStrat);
         std::cout << "Failo apdorojimas baigtas." << "\n";
-        
+
         exit(EXIT_SUCCESS);
     }
 
@@ -58,7 +58,12 @@ int main(){
     std::cin >> ivedSkait;
 
     if (ivedSkait == 1){
-        inputScan(studentai);
+        std::cout << "Kurį failą norite apdoroti?" << "\n";
+        system("ls *.txt");
+        std::cout << "Įveskite failo pavadinimą (be '.txt'): " << "\n";
+        std::cin >> failoPav;
+
+        inputScan(studentai, failoPav);
         outputScan(studentai);
         exit(EXIT_SUCCESS);
     }
