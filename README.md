@@ -1,7 +1,7 @@
 ### Programos naudojimo instrukcija
 
 1. Atsisiųsti v1.0 release paketą;
-2. Atsidaryti terminalą ir jame pakeisti dabartinę direktoriją į atsisiųsto (un-zip'into) kodo aplanką ("cd ./objektinis-pirma-obj-X" ar panašiai);
+2. Atsidaryti terminalą ir jame pakeisti dabartinę direktoriją į atsisiųsto (un-zip'into) kodo aplanką ("cd ./objektinis-pirma-obj-4" ar panašiai);
 3. Terminale paleisti run.sh script'ą su komanda "./run.sh". *PASTABA*: jeigu nepavyksta, panaudoti komandą "chmod +x run.sh";
 4. Programai pasileidus, skaityti ekrane pasirodžiusias instrukcijas ir jomis vadovautis.
 
@@ -48,7 +48,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 - Informacija išvedama į failą sulygiuota ir išrikiuota pagal pavardę
 - Studentus suskirsto į "protingus" ir "kvailus" ir juos išveda į atskirus failus
 - Fiksuoja programos spartos laiką vector ir list konteineriams: įrašų generavimas, nuskaitymas, rikiavimas, studentų įrašų išskirtymas į "protingus" ir "kvailus"
-- *Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą pritaikant efektyvius STL algoritmus*
+- *Studentų įrašų duomenis galima apdoroti pagal 3 skirtingas strategijas: (1) padalinti į naujus 2 konteinerius, (2) padalinti sukuriant tik 1 naują konteinerį, (3) taikant greičiausią būdą ir pritaikant efektyvius STL algoritmus*
 
 Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, iomanip, stdexception, chrono, list.
 
