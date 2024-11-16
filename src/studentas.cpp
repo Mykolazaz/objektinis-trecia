@@ -11,22 +11,30 @@ double mediana(std::vector<int> &v){
     }
 }
 
-void inputManual(std::vector<Studentas> &studentai, int studSk){
+void inputManual(std::vector<StudentasClass> &studentai, int studSk){
     for (int i=0; i<studSk; i++){
         int arRandom;
         std::string input;
         bool praeitasBuvoTuscias = false;
-        Studentas Lok;
+        StudentasClass stud;
 
         std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << "\n";
         std::cin >> arRandom;
 
+        std::string vardas, pavarde;
+        int egzamRez;
+
         std::cout << "Įveskite studento vardą ir pavardę:" << "\n";
-        std::cin >> Lok.vardas >> Lok.pavarde;
+        std::cin >> vardas >> pavarde;
+        
+        stud.setVardas(vardas);
+        stud.setPavarde(pavarde);
         
         if (arRandom == 0){
             std::cout << "Įveskite egzamino rezultatą: " << "\n";
-            std::cin >> Lok.egzamRez;
+            std::cin >> egzamRez;
+            stud.setEgzamRez(egzamRez);
+
             std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << "\n";
 
             while (true) {
@@ -44,7 +52,7 @@ void inputManual(std::vector<Studentas> &studentai, int studSk){
                     int skaicius;
                     
                     while (ss >> skaicius) {
-                        Lok.tarpRez.push_back(skaicius);
+                        stud.pridetiTarpRez(skaicius);
                     }
                 }
             }
@@ -53,32 +61,40 @@ void inputManual(std::vector<Studentas> &studentai, int studSk){
             std::mt19937 mt(rd());
             std::uniform_int_distribution<int> dist(0, 10);
 
-            Lok.egzamRez = dist(mt);
+            stud.setEgzamRez(dist(mt));
             for (int index = 0; index < 15; index++){
-                Lok.tarpRez.push_back(dist(mt));
+                stud.pridetiTarpRez(dist(mt));
             }
         }
-        studentai.push_back(Lok);
-        clean(Lok);
+        studentai.push_back(stud);
+        stud.clear();
     }
 }
 
-void inputManualList(std::list<Studentas> &studentaiList, int studSk){
+void inputManualList(std::list<StudentasClass> &studentaiList, int studSk){
     for (int i=0; i<studSk; i++){
         int arRandom;
         std::string input;
         bool praeitasBuvoTuscias = false;
-        Studentas Lok;
+        StudentasClass stud;
 
         std::cout << "Ar atsitiktinai generuoti sekančio studento balus? (0 arba 1):" << "\n";
         std::cin >> arRandom;
 
+        std::string vardas, pavarde;
+        int egzamRez;
+
         std::cout << "Įveskite studento vardą ir pavardę:" << "\n";
-        std::cin >> Lok.vardas >> Lok.pavarde;
+        std::cin >> vardas >> pavarde;
+        
+        stud.setVardas(vardas);
+        stud.setPavarde(pavarde);
         
         if (arRandom == 0){
             std::cout << "Įveskite egzamino rezultatą: " << "\n";
-            std::cin >> Lok.egzamRez;
+            std::cin >> egzamRez;
+            stud.setEgzamRez(egzamRez);
+
             std::cout << "Į vieną eilutę įveskite tarpinius rezultatus (2 ENTER paspausdimai stabdo įvedimą):" << "\n";
 
             while (true) {
@@ -96,7 +112,7 @@ void inputManualList(std::list<Studentas> &studentaiList, int studSk){
                     int skaicius;
                     
                     while (ss >> skaicius) {
-                        Lok.tarpRez.push_back(skaicius);
+                        stud.pridetiTarpRez(skaicius);
                     }
                 }
             }
@@ -105,17 +121,17 @@ void inputManualList(std::list<Studentas> &studentaiList, int studSk){
             std::mt19937 mt(rd());
             std::uniform_int_distribution<int> dist(0, 10);
 
-            Lok.egzamRez = dist(mt);
-            for (int index = 0; index < 5; index++){
-                Lok.tarpRez.push_back(dist(mt));
+            stud.setEgzamRez(dist(mt));
+            for (int index = 0; index < 15; index++){
+                stud.pridetiTarpRez(dist(mt));
             }
         }
-        studentaiList.push_back(Lok);
-        clean(Lok);
+        studentaiList.push_back(stud);
+        stud.clear();
     }
 }
 
-void inputScan(std::vector<Studentas> &studentai, std::string failoPav) {
+void inputScan(std::vector<StudentasClass> &studentai, std::string failoPav) {
     std::cout << "Failo apdorojimas pradėtas..." << "\n";
     
     failoPav = failoPav + ".txt";
@@ -127,49 +143,48 @@ void inputScan(std::vector<Studentas> &studentai, std::string failoPav) {
 
     while (std::getline(fr, eilute)) {
         std::istringstream iss(eilute);
-        Studentas Lok;
+        StudentasClass stud;
+        
+        std::string vardas, pavarde;
+        iss >> pavarde >> vardas;
+        stud.setPavarde(pavarde);
+        stud.setVardas(vardas);
 
-        iss >> Lok.pavarde >> Lok.vardas;
-
+        std::vector<int> tarpRez;
         int balas;
-
         while (iss >> balas) {
-            Lok.tarpRez.push_back(balas);
+            tarpRez.push_back(balas);
         }
 
-        if (!Lok.tarpRez.empty()) {
-            Lok.egzamRez = Lok.tarpRez.back();
-            Lok.tarpRez.pop_back();
+        if (!tarpRez.empty()) {
+            stud.setEgzamRez(tarpRez.back());
+            tarpRez.pop_back();
+            stud.setTarpRez(tarpRez);
         }
 
-        studentai.push_back(Lok);
+        studentai.push_back(stud);
     }
 
     fr.close();
 }
 
-
-void outputManual(Studentas Lok, int vidMed){
+void outputManual(StudentasClass stud, int vidMed){
     if(vidMed == 0){
-        double galut_vidurkis = 0.4*(accumulate(Lok.tarpRez.begin(), Lok.tarpRez.end(), 0.0)/Lok.tarpRez.size()) + 0.6*Lok.egzamRez;
-
-        std::cout << std::left << std::setw(20) << Lok.pavarde
-        << std::setw(20) << Lok.vardas << std::setw(20)<< std::setprecision(2) << std::fixed <<
-        galut_vidurkis << "\n";
+        std::cout << std::left << std::setw(20) << stud.getPavarde()
+        << std::setw(20) << stud.getVardas() << std::setw(20)<< std::setprecision(2) << std::fixed <<
+        stud.getVidurkis() << "\n";
     } else {
-        double galut_med = 0.4*(mediana(Lok.tarpRez)) + 0.6*Lok.egzamRez;
-
-        std::cout << std::left << std::setw(20) << Lok.pavarde
-        << std::setw(20) << Lok.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-        galut_med << "\n";
+        std::cout << std::left << std::setw(20) << stud.getPavarde()
+        << std::setw(20) << stud.getVardas() << std::setw(20) << std::setprecision(2) << std::fixed <<
+        stud.getMediana() << "\n";
     }
     
 }
 
-void outputScan(std::vector<Studentas> &studentai){
+void outputScan(std::vector<StudentasClass> &studentai){
     std::sort(studentai.begin(), studentai.end(), 
-              [](const Studentas &a, const Studentas &b) {
-                  return a.pavarde < b.pavarde;
+              [](const StudentasClass &a, const StudentasClass &b) {
+                  return a.getPavarde() < b.getPavarde();
               });
     
     std::ofstream fw("kursiokai_bendra.txt");
@@ -177,21 +192,17 @@ void outputScan(std::vector<Studentas> &studentai){
     fw << std::left << std::setw(20) << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << "\n";
     fw << "---------------------------------------------------------------------------" << "\n";
 
-    for (const Studentas &stud : studentai){
+    for (const StudentasClass &stud : studentai){
         try {
-
-            if (stud.tarpRez.empty() || stud.tarpRez.size() == 1) {
-                throw std::runtime_error("Nepakankamai įvertinimų studentui " + stud.vardas + " " + stud.pavarde + ".");
+            if (stud.getVidurkis() == 0) {
+                throw std::runtime_error("Nepakankamai įvertinimų studentui " + stud.getVardas() + " " + stud.getPavarde() + ".");
             }
 
-            double galut_vidurkis = 0.4*(accumulate(stud.tarpRez.begin(), stud.tarpRez.end(), 0.0)/stud.tarpRez.size()) + 0.6*stud.egzamRez;
+            std::vector<int> visiRez = stud.getTarpRez();
+            visiRez.push_back(stud.getEgzamRez());
 
-            std::vector<int> visiRez = stud.tarpRez;
-            visiRez.push_back(stud.egzamRez);
-            double galut_med =0.4*mediana(visiRez) + 0.6*stud.egzamRez;
-
-            fw << std::left << std::setw(20) << stud.pavarde << std::setw(20) << stud.vardas << std::setw(20) << std::setprecision(2) << std::fixed <<
-            galut_vidurkis << std::setw(20) << std::setprecision(2) << std::fixed << galut_med << "\n";
+            fw << std::left << std::setw(20) << stud.getPavarde() << std::setw(20) << stud.getVardas() << std::setw(20) << std::setprecision(2) << std::fixed <<
+            stud.getVidurkis() << std::setw(20) << std::setprecision(2) << std::fixed << stud.getMediana() << "\n";
         }
 
         catch (const std::exception& e) {
@@ -201,11 +212,4 @@ void outputScan(std::vector<Studentas> &studentai){
     }
     std::cout << "Pasirinktas failas nuskaitytas ir studentai surikiuoti pagal pavardes." << "\n";
     fw.close();
-}
-
-void clean(Studentas &Lok){
-    Lok.vardas.clear();
-    Lok.pavarde.clear();
-    Lok.tarpRez.clear();
-    Lok.balai.clear();
 }

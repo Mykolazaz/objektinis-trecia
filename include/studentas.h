@@ -151,7 +151,6 @@ void inputManualList(std::list<StudentasClass> &studentaiList, int studSk);
 void inputScan(std::vector<StudentasClass> &studentai, std::string failoPav);
 void outputManual(StudentasClass Lok, int vidMed);
 void outputScan(std::vector<StudentasClass> &studentai);
-void clean(StudentasClass &Lok);
 void generateEntries(int studGenSk, int ndGenSk);
 void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat);
 
