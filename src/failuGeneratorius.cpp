@@ -179,23 +179,11 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
         }
         // Studentai rušiuojami greičiausiais metodais (taikomi tik vektoriui)
         case 3: {
-            if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
-                auto iter = std::stable_partition(visiStudentai.begin(), visiStudentai.end(),
-                    [](const Studentas &s) { return s.galutinis >= 5.0; });
-                
-                kvaili.insert(kvaili.end(), iter, visiStudentai.end());
-                visiStudentai.erase(iter, visiStudentai.end());
-            } else {
-                auto it = visiStudentai.begin();
-                while (it != visiStudentai.end()) {
-                    if (it->galutinis < 5.0) {
-                        kvaili.push_back(*it);
-                        it = visiStudentai.erase(it);
-                    } else {
-                        ++it;
-                    }
-                }
-            }
+            auto iter = std::stable_partition(visiStudentai.begin(), visiStudentai.end(),
+                [](const Studentas &s) { return s.galutinis >= 5.0; });
+            
+            kvaili.insert(kvaili.end(), iter, visiStudentai.end());
+            visiStudentai.erase(iter, visiStudentai.end());
             
             // Studentų dalijimo pabaiga (3)
             std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
