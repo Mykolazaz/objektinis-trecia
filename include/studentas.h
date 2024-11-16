@@ -15,33 +15,66 @@ struct Studentas{
 
 class StudentasClass{
 private:
-    std::string vardas;
-    std::string pavarde;
-    std::vector<int> tarpRez;
-    int egzamRez;
-    double vidurkis;
-    double mediana;
-    double galutinis;
+    std::string vardas_;
+    std::string pavarde_;
+    std::vector<int> tarpRez_;
+    int egzamRez_;
+    double vidurkis_;
+    double mediana_;
+    double galutinis_;
 
     //Pagalbiniai metodai
     void rastiVid() {
-        vidurkis = tarpRez.empty() ? 0.0 : 
-                   accumulate(tarpRez.begin(), tarpRez.end(), 0.0) / tarpRez.size();
+        vidurkis_ = tarpRez_.empty() ? 0.0 : 
+                   accumulate(tarpRez_.begin(), tarpRez_.end(), 0.0) / tarpRez_.size();
     }
     
     void rastiMed() {
-        if (tarpRez.empty()) {
-            mediana = 0.0;
+        if (tarpRez_.empty()) {
+            mediana_ = 0.0;
             return;
         }
         
-        std::vector<int> sorted = tarpRez;
+        std::vector<int> sorted = tarpRez_;
         sort(sorted.begin(), sorted.end());
         size_t n = sorted.size();
-        mediana = (n % 2 == 0) ? 
+        mediana_ = (n % 2 == 0) ? 
                   (sorted[n/2 - 1] + sorted[n/2]) / 2.0 : 
                   sorted[n/2];
     }
+
+    void rastiRez() {
+        rastiVid();
+        rastiMed();
+    }
+
+public:
+    // Konstruktoriai
+    StudentasClass() : 
+        egzamRez_(0), 
+        vidurkis_(0.0), 
+        mediana_(0.0), 
+        galutinis_(0.0) {}
+    
+    StudentasClass(const std::string& vardas, const std::string& pavarde) : 
+        vardas_(vardas), 
+        pavarde_(pavarde), 
+        egzamRez_(0), 
+        vidurkis_(0.0), 
+        mediana_(0.0), 
+        galutinis_(0.0) {}
+
+    ~StudentasClass() = default;
+
+    // Get'eriai
+    const std::string& getVardas() const { return vardas_; }
+    const std::string& getPavarde() const { return pavarde_; }
+    const std::vector<int>& getTarpRez() const { return tarpRez_; }
+    int getEgzamRez() const { return egzamRez_; }
+    double getVidurkis() const { return vidurkis_; }
+    double getMediana() const { return mediana_; }
+    double getGalutinis() const { return galutinis_; }
+    
 };
 
 void inputManual(std::vector<Studentas> &studentai, int studSk);
