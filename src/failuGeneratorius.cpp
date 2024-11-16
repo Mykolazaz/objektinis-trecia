@@ -41,10 +41,6 @@ void generateEntries(int studGenSk, int ndGenSk){
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 10);
 
-    std::string pavarde, vardas;
-    pavarde.reserve(15);
-    vardas.reserve(15);
-
     for (int i = 1; i < studGenSk; i++){
         buffer << std::left << std::setw(15) << ("Pavarde"+std::to_string(i))
         << std::setw(15) << ("Vardas"+std::to_string(i));
@@ -70,6 +66,7 @@ void generateEntries(int studGenSk, int ndGenSk){
     std::cout << "Failo generavimas baigtas." << "\n";
 }
 
+/*
 template <typename Container>
 void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     Timer bendrLaikas;
@@ -245,6 +242,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
     std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << "\n";
 }
+*/
 
 void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat) {
     if (useVector == 1) {
