@@ -121,10 +121,8 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     // Visų studentų rikiavimo pradžia
     uzdLaikas.reset();
 
-    auto sortFunction = [rusiavKateg](const StudentasClass &a, const StudentasClass &b) {
-        if (rusiavKateg == 0) return a.getVardas() < b.getVardas();
-        if (rusiavKateg == 1) return a.getPavarde() < b.getPavarde();
-        return a.getGalutinis() > b.getGalutinis();
+    auto sortFunction = [rusiavKateg](StudentasClass &a, StudentasClass &b) {
+        return a.compare(b, rusiavKateg);
     };
 
     if constexpr (std::is_same_v<Container, std::vector<StudentasClass>>) {

@@ -132,6 +132,17 @@ public:
     bool arIslaike() const {
         return galutinis_ >= 5.0;
     }
+
+    bool compare(const StudentasClass& b, int criteria = 2) {
+        switch (criteria) {
+            case 0:
+                return this->vardas_ > b.vardas_;
+            case 1:
+                return this->pavarde_ > b.pavarde_;
+            case 2:
+                return this->galutinis_ > b.galutinis_;
+        }
+    }
   
     //Friend'ai įvedimo ir išvedimo operacijoms
     friend std::istream& operator>>(std::istream& is, StudentasClass& s) {

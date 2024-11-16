@@ -1,15 +1,6 @@
 #include "lib.h"
 #include "studentas.h"
 
-double mediana(std::vector<int> &v){
-    size_t n = v.size();
-    sort(v.begin(), v.end());
-    if (n % 2 == 0) { //dviejų vidurinių variacinės eilutės skaičių vidurkis
-        return (v[n/2 - 1] + v[n/2]) / 2.0;
-    } else {
-        return v[n/2];
-    }
-}
 
 void inputManual(std::vector<StudentasClass> &studentai, int studSk){
     for (int i=0; i<studSk; i++){
