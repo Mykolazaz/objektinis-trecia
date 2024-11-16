@@ -132,6 +132,18 @@ public:
     bool arIslaike() const {
         return galutinis_ >= 5.0;
     }
+  
+    //Friend'ai įvedimo ir išvedimo operacijoms
+    friend std::istream& operator>>(std::istream& is, StudentasClass& s) {
+        is >> s.vardas_ >> s.pavarde_;
+        return is;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& os, const StudentasClass& s) {
+        os << std::left << std::setw(20) << s.pavarde_ << std::setw(20) << s.vardas_ 
+            << std::setw(20) << std::setprecision(2) << std::fixed << s.galutinis_ << "\n";
+        return os;
+    }
 };
 
 void inputManual(std::vector<Studentas> &studentai, int studSk);
