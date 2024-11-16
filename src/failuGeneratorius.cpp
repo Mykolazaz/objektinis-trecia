@@ -244,10 +244,189 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 }
 */
 
+template <typename Container>
+void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
+    Timer bendrLaikas;
+
+    // Failo nuskaitymo pradžia
+    Timer uzdLaikas;
+
+    failoPav = failoPav + ".txt";
+    std::ifstream fr(failoPav);
+    std::string eilute;
+    std::getline(fr, eilute);
+
+    Container visiStudentai;
+    if constexpr (std::is_same_v<Container, std::vector<StudentasClass>>) {
+        visiStudentai.reserve(1000000);
+    }
+
+    while (std::getline(fr, eilute)) {
+        std::istringstream iss(eilute);
+        StudentasClass stud;
+        
+        std::string vardas, pavarde;
+        iss >> pavarde >> vardas;
+        stud.setPavarde(pavarde);
+        stud.setVardas(vardas);
+
+        std::vector<int> tarpRez;
+        int balas;
+        while (iss >> balas) {
+            tarpRez.push_back(balas);
+        }
+
+        if (!tarpRez.empty()) {
+            stud.setEgzamRez(tarpRez.back());
+            tarpRez.pop_back();
+            stud.setTarpRez(tarpRez);
+        }
+
+        visiStudentai.push_back(stud);
+    }
+
+    fr.close();
+
+    // Failo nuskaitymo pabaiga
+    std::cout << "Įrašų nuskaitymas: " << uzdLaikas.elapsed() << "\n";
+
+    // Visų studentų rikiavimo pradžia
+    uzdLaikas.reset();
+
+    auto sortFunction = [rusiavKateg](const StudentasClass &a, const StudentasClass &b) {
+        if (rusiavKateg == 0) return a.getVardas() < b.getVardas();
+        if (rusiavKateg == 1) return a.getPavarde() < b.getPavarde();
+        return a.getGalutinis() > b.getGalutinis();
+    };
+
+    if constexpr (std::is_same_v<Container, std::vector<StudentasClass>>) {
+        std::sort(visiStudentai.begin(), visiStudentai.end(), sortFunction);
+    } else {
+        visiStudentai.sort(sortFunction);
+    }
+
+    // Visų studentų rikiavimo pabaiga
+    std::cout << "Įrašų rikiavimas (sort f-ja) mažėjimo tvarka: " << uzdLaikas.elapsed() << "\n";
+
+    // Studentų dalijimo pradžia
+    uzdLaikas.reset();
+
+    Container protingi, kvaili;
+
+    switch (testStrat) {
+        // Studentai skaidomi į du naujus to paties tipo konteinerius
+        case 1: {
+            for (const auto &student : visiStudentai) {
+                if (student.arIslaike()) {
+                    protingi.push_back(student);
+                } else {
+                    kvaili.push_back(student);
+                }
+            }
+            visiStudentai.clear();
+
+            // Studentų dalijimo pabaiga (1)
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
+            
+            break;
+        }
+
+        // Studentai skaidomi panaudojant tik vieną naują konteinerį
+        case 2: {
+            auto it = visiStudentai.begin();
+            while (it != visiStudentai.end()) {
+                if (!it->arIslaike()) {
+                    kvaili.push_back(*it);
+                    it = visiStudentai.erase(it);
+                } else {
+                    ++it;
+                }
+            }
+
+            // Studentų dalijimo pabaiga (2)
+            std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
+
+            break;
+        }
+
+        // Studentai rušiuojami greičiausiais metodais (taikomi tik vektoriui)
+        case 3: {
+            auto iter = std::stable_partition(visiStudentai.begin(), visiStudentai.end(),
+                [](const StudentasClass &s) { return s.arIslaike(); });
+            
+            kvaili.insert(kvaili.end(), iter, visiStudentai.end());
+            visiStudentai.erase(iter, visiStudentai.end());
+
+            // Studentų dalijimo pabaiga (3)
+            std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
+            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
+            
+            break;
+        }
+    }
+
+    // "Protingų" studentų rašymo pradžia
+    uzdLaikas.reset();
+    
+    std::string failasProtingi = "protingi.txt";
+    std::ofstream fwProtingi(failasProtingi);
+    
+    fwProtingi << std::left << std::setw(20) << "Pavarde"
+               << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << "\n";
+    fwProtingi << "-------------------------------------------------------" << "\n";
+
+    if (testStrat == 2 || testStrat == 3) {
+        for (const auto &student : visiStudentai) {
+            fwProtingi << std::left << std::setw(20) << student.getPavarde() 
+                      << std::setw(20) << student.getVardas()
+                      << std::setw(20) << std::setprecision(2) << std::fixed 
+                      << student.getGalutinis() << "\n";
+        }
+    } else {
+        for (const auto &student : protingi) {
+            fwProtingi << std::left << std::setw(20) << student.getPavarde()
+                      << std::setw(20) << student.getVardas()
+                      << std::setw(20) << std::setprecision(2) << std::fixed 
+                      << student.getGalutinis() << "\n";
+        }
+    }
+
+    fwProtingi.close();
+    protingi.clear();
+
+    // "Protingų" studentų rašymo pabaiga
+    std::cout << "'Protingų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n";
+
+    // "Kvailų" studentų rašymo pradžia
+    uzdLaikas.reset();
+
+    std::string failasKvaili = "kvaili.txt";
+    std::ofstream fwKvaili(failasKvaili);
+
+    fwKvaili << std::left << std::setw(20) << "Pavarde"
+             << std::setw(20) << "Vardas" << std::setw(20) << "Galutinis (vid.)" << "\n";
+    fwKvaili << "-------------------------------------------------------" << "\n";
+
+    for (const auto &student : kvaili) {
+        fwKvaili << std::left << std::setw(20) << student.getPavarde() << std::setw(20) << student.getVardas() 
+                 << std::setw(20) << std::setprecision(2) << std::fixed << student.getGalutinis() << "\n";
+    }
+
+    fwKvaili.close();
+    kvaili.clear();
+
+    // "Kvailų" studentų rašymo pabaiga
+    std::cout << "'Kvailų' studentų įrašų rašymas: " << uzdLaikas.elapsed() << "\n" << "\n";
+
+    std::cout << "Bendras veikimo laikas be generavimo: " << bendrLaikas.elapsed() << "\n" << "\n";
+}
+
 void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat) {
     if (useVector == 1) {
-        inputSplitSortImpl<std::vector<Studentas>>(failoPav, rusiavKateg, testStrat);
+        inputSplitSortImpl<std::vector<StudentasClass>>(failoPav, rusiavKateg, testStrat);
     } else {
-        inputSplitSortImpl<std::list<Studentas>>(failoPav, rusiavKateg, testStrat);
+        inputSplitSortImpl<std::list<StudentasClass>>(failoPav, rusiavKateg, testStrat);
     }
 }
