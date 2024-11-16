@@ -75,6 +75,63 @@ public:
     double getMediana() const { return mediana_; }
     double getGalutinis() const { return galutinis_; }
     
+    // Set'eriai
+    void setVardas(const std::string& vardas) { vardas_ = vardas; }
+    void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+    void setEgzamRez(int rez) { 
+        egzamRez_ = rez; 
+        rastiGalutini();
+    }
+    
+    // Metodai
+    void setTarpRez(const std::vector<int>& naujiTarpRez) {
+        tarpRez_ = naujiTarpRez;
+        rastiRez();
+        rastiGalutini();
+    }
+
+    void pridetiTarpRez(int rez) {
+        tarpRez_.push_back(rez);
+        rastiRez();
+        rastiGalutini();
+    }
+
+    void generuotiBalus(int kiekBalu = 15) {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(0, 10);
+
+        egzamRez_ = dist(mt);
+        tarpRez_.clear();
+        tarpRez_.reserve(kiekBalu);
+        
+        for (int i = 0; i < kiekBalu; i++) {
+            tarpRez_.push_back(dist(mt));
+        }
+        
+        rastiRez();
+        rastiGalutini();
+    }
+
+    void rastiGalutini(bool naudotiVidurki = true) {
+        galutinis_ = naudotiVidurki ? 
+                   0.4 * vidurkis_ + 0.6 * egzamRez_ :
+                   0.4 * mediana_ + 0.6 * egzamRez_;
+    }
+
+    void clear() {
+        vardas_.clear();
+        pavarde_.clear();
+        tarpRez_.clear();
+        egzamRez_ = 0;
+        vidurkis_ = 0.0;
+        mediana_ = 0.0;
+        galutinis_ = 0.0;
+    }
+
+    bool arIslaike() const {
+        return galutinis_ >= 5.0;
+    }
 };
 
 void inputManual(std::vector<Studentas> &studentai, int studSk);
