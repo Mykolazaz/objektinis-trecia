@@ -3,8 +3,8 @@
 
 
 int main(){
-    std::vector<Studentas> studentai;
-    std::list<Studentas> studentaiList;
+    std::vector<StudentasClass> studentai;
+    std::list<StudentasClass> studentaiList;
 
     int studSk, vidMed, ivedGener, studGenSk, ndGenSk, ivedSkait, rusiavKateg, vektSar, testStrat, arVektorius;
     std::string failoPav;
@@ -13,7 +13,7 @@ int main(){
         std::cout << "Norite įvesti (0), generuoti (1) ar testuoti (2)?: " << "\n";
         std::cin >> ivedGener;
     
-        if (!std::cin || (ivedGener != 0 && ivedGener != 1 && ivedGener != 2)){
+        if (!std::cin || (ivedGener != 0 && ivedGener != 1 && ivedGener !=2)){
             throw std::runtime_error("Įrašytas netinkamas simbolis(-iai))!");
         }
     } catch (const std::exception& e) {

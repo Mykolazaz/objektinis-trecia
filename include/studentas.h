@@ -23,7 +23,7 @@ private:
     double mediana_;
     double galutinis_;
 
-    //Pagalbiniai metodai
+    // Pagalbiniai metodai
     void rastiVid() {
         vidurkis_ = tarpRez_.empty() ? 0.0 : 
                    accumulate(tarpRez_.begin(), tarpRez_.end(), 0.0) / tarpRez_.size();
@@ -146,12 +146,12 @@ public:
     }
 };
 
-void inputManual(std::vector<Studentas> &studentai, int studSk);
-void inputManualList(std::list<Studentas> &studentaiList, int studSk);
-void inputScan(std::vector<Studentas> &studentai, std::string failoPav);
-void outputManual(Studentas Lok, int vidMed);
-void outputScan(std::vector<Studentas> &studentai);
-void clean(Studentas &Lok);
+void inputManual(std::vector<StudentasClass> &studentai, int studSk);
+void inputManualList(std::list<StudentasClass> &studentaiList, int studSk);
+void inputScan(std::vector<StudentasClass> &studentai, std::string failoPav);
+void outputManual(StudentasClass Lok, int vidMed);
+void outputScan(std::vector<StudentasClass> &studentai);
+void clean(StudentasClass &Lok);
 void generateEntries(int studGenSk, int ndGenSk);
 void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat);
 
