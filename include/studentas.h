@@ -13,6 +13,17 @@ struct Studentas{
     double galutinis;
 };
 
+class StudentasClass{
+private:
+    std::string vardas;
+    std::string pavarde;
+    std::vector<int> tarpRez;
+    int egzamRez;
+    double vidurkis;
+    double mediana;
+    double galutinis;
+};
+
 void inputManual(std::vector<Studentas> &studentai, int studSk);
 void inputManualList(std::list<Studentas> &studentaiList, int studSk);
 void inputScan(std::vector<Studentas> &studentai, std::string failoPav);
