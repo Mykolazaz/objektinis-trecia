@@ -22,6 +22,26 @@ private:
     double vidurkis;
     double mediana;
     double galutinis;
+
+    //Pagalbiniai metodai
+    void rastiVid() {
+        vidurkis = tarpRez.empty() ? 0.0 : 
+                   accumulate(tarpRez.begin(), tarpRez.end(), 0.0) / tarpRez.size();
+    }
+    
+    void rastiMed() {
+        if (tarpRez.empty()) {
+            mediana = 0.0;
+            return;
+        }
+        
+        std::vector<int> sorted = tarpRez;
+        sort(sorted.begin(), sorted.end());
+        size_t n = sorted.size();
+        mediana = (n % 2 == 0) ? 
+                  (sorted[n/2 - 1] + sorted[n/2]) / 2.0 : 
+                  sorted[n/2];
+    }
 };
 
 void inputManual(std::vector<Studentas> &studentai, int studSk);
