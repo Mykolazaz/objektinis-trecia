@@ -83,6 +83,8 @@ bool StudentasClass::compare(const StudentasClass& b, int criteria) {
             return this->pavarde_ > b.pavarde_;
         case 2:
             return this->galutinis_ > b.galutinis_;
+        default:
+            return this->galutinis_ > b.galutinis_;
     }
 }
 

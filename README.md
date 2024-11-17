@@ -57,3 +57,11 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 ![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 2 strategiją.](./spartos-analize/programos-spartos-analize-2.png)
 
 ![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 3 strategiją.](./spartos-analize/programos-spartos-analize-3.png)
+
+### Struct ir Class veikimo palyginimas
+
+![Lentelėje vaizduojama lyginamoji programos spartos analizė naudojant struct ir class.](./spartos-analize/programos-spartos-analize-4.png)
+
+### O1, O2 ir O3 optimizavimo flag'ų palyginimas
+
+![Lentelėje vaizduojama programos spartos ir naudojamos atminties diske analizė naudojant struct ir class.](./spartos-analize/programos-spartos-analize-5.png)
