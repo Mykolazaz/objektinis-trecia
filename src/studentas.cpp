@@ -2,7 +2,100 @@
 #include "studentas.h"
 
 // Class'ės Studentas metodų realizacijos
+// Privatūs pagalbiniai metodai
+void StudentasClass::rastiVid() {
+    vidurkis_ = tarpRez_.empty() ? 0.0 : 
+                accumulate(tarpRez_.begin(), tarpRez_.end(), 0.0) / tarpRez_.size();
+}
 
+void StudentasClass::rastiMed() {
+    if (tarpRez_.empty()) {
+        mediana_ = 0.0;
+        return;
+    }
+    
+    std::vector<int> sorted = tarpRez_;
+    sort(sorted.begin(), sorted.end());
+    size_t n = sorted.size();
+    mediana_ = (n % 2 == 0) ? 
+                (sorted[n/2 - 1] + sorted[n/2]) / 2.0 : 
+                sorted[n/2];
+}
+
+void StudentasClass::rastiRez() {
+    rastiVid();
+    rastiMed();
+}
+
+//Metodai
+void StudentasClass::setTarpRez(const std::vector<int>& naujiTarpRez) {
+    tarpRez_ = naujiTarpRez;
+    rastiRez();
+    rastiGalutini();
+}
+
+void StudentasClass::pridetiTarpRez(int rez) {
+    tarpRez_.push_back(rez);
+    rastiRez();
+    rastiGalutini();
+}
+
+void StudentasClass::generuotiBalus(int kiekBalu) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, 10);
+
+    egzamRez_ = dist(mt);
+    tarpRez_.clear();
+    tarpRez_.reserve(kiekBalu);
+    
+    for (int i = 0; i < kiekBalu; i++) {
+        tarpRez_.push_back(dist(mt));
+    }
+    
+    rastiRez();
+    rastiGalutini();
+    rastiIslaike();
+}
+
+void StudentasClass::rastiGalutini(bool naudotiVidurki) {
+    galutinis_ = naudotiVidurki ? 
+                0.4 * vidurkis_ + 0.6 * egzamRez_ :
+                0.4 * mediana_ + 0.6 * egzamRez_;
+    rastiIslaike();
+}
+
+void StudentasClass::clear() {
+    vardas_.clear();
+    pavarde_.clear();
+    tarpRez_.clear();
+    egzamRez_ = 0;
+    vidurkis_ = 0.0;
+    mediana_ = 0.0;
+    galutinis_ = 0.0;
+}
+
+bool StudentasClass::compare(const StudentasClass& b, int criteria) {
+    switch (criteria) {
+        case 0:
+            return this->vardas_ > b.vardas_;
+        case 1:
+            return this->pavarde_ > b.pavarde_;
+        case 2:
+            return this->galutinis_ > b.galutinis_;
+    }
+}
+
+std::istream& operator>>(std::istream& is, StudentasClass& s) {
+    is >> s.vardas_ >> s.pavarde_;
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const StudentasClass& s) {
+    os << std::left << std::setw(20) << s.pavarde_ << std::setw(20) << s.vardas_ 
+        << std::setw(20) << std::setprecision(2) << std::fixed << s.galutinis_ << "\n";
+    return os;
+}
 
 // Funkcijos, dirbančios su class'ės Studentas objektas
 void inputManual(std::vector<StudentasClass> &studentai, int studSk){
