@@ -3,15 +3,6 @@
 
 #include "lib.h"
 
-struct Studentas{
-    std::string vardas;
-    std::string pavarde;
-    std::vector<int> tarpRez;
-    int egzamRez;
-    double vidurkis, mediana;
-    std::vector<int> balai;
-    double galutinis;
-};
 
 class StudentasClass{
 private:
@@ -22,8 +13,9 @@ private:
     double vidurkis_;
     double mediana_;
     double galutinis_;
+    bool islaike_;
 
-    // Pagalbiniai metodai
+    // Privatūs pagalbiniai metodai
     void rastiVid() {
         vidurkis_ = tarpRez_.empty() ? 0.0 : 
                    accumulate(tarpRez_.begin(), tarpRez_.end(), 0.0) / tarpRez_.size();
@@ -111,12 +103,14 @@ public:
         
         rastiRez();
         rastiGalutini();
+        rastiIslaike();
     }
 
     void rastiGalutini(bool naudotiVidurki = true) {
         galutinis_ = naudotiVidurki ? 
                    0.4 * vidurkis_ + 0.6 * egzamRez_ :
                    0.4 * mediana_ + 0.6 * egzamRez_;
+        rastiIslaike();
     }
 
     void clear() {
@@ -129,8 +123,12 @@ public:
         galutinis_ = 0.0;
     }
 
+    void rastiIslaike(){
+        islaike_ = (galutinis_ >= 5.0);
+    }
+
     bool arIslaike() const {
-        return galutinis_ >= 5.0;
+        return islaike_;
     }
 
     bool compare(const StudentasClass& b, int criteria = 2) {

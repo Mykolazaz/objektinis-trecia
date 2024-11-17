@@ -109,7 +109,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
         visiStudentai.push_back(stud);
     }
 
-    if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
+    if constexpr (std::is_same_v<Container, std::vector<StudentasClass>>) {
         visiStudentai.shrink_to_fit();
     }
 
@@ -153,7 +153,6 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
             // Studentų dalijimo pabaiga (1)
             std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
-            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
             
             break;
         }
@@ -172,7 +171,6 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
             // Studentų dalijimo pabaiga (2)
             std::cout << "Įrašų dalijimas į 'visiStudentai' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
-            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
 
             break;
         }
@@ -187,7 +185,6 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
             // Studentų dalijimo pabaiga (3)
             std::cout << "Įrašų dalijimas į 'protingus' ir 'kvailus': " << uzdLaikas.elapsed() << "\n";
-            // std::cout << "visiStudentai užima: " << sizeof(visiStudentai) << " / 'Protingi' užima: " << sizeof(protingi) << " / 'Kvaili' užima: " << sizeof(kvaili) << "\n";
             
             break;
         }

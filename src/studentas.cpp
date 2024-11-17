@@ -1,7 +1,10 @@
 #include "lib.h"
 #include "studentas.h"
 
+// Class'ės Studentas metodų realizacijos
 
+
+// Funkcijos, dirbančios su class'ės Studentas objektas
 void inputManual(std::vector<StudentasClass> &studentai, int studSk){
     for (int i=0; i<studSk; i++){
         int arRandom;
