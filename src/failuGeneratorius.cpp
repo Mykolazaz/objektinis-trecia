@@ -202,17 +202,11 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
 
     if (testStrat == 2 || testStrat == 3) {
         for (const auto &student : visiStudentai) {
-            fwProtingi << std::left << std::setw(20) << student.getPavarde() 
-                      << std::setw(20) << student.getVardas()
-                      << std::setw(20) << std::setprecision(2) << std::fixed 
-                      << student.getGalutinis() << "\n";
+            fwProtingi << student;
         }
     } else {
         for (const auto &student : protingi) {
-            fwProtingi << std::left << std::setw(20) << student.getPavarde()
-                      << std::setw(20) << student.getVardas()
-                      << std::setw(20) << std::setprecision(2) << std::fixed 
-                      << student.getGalutinis() << "\n";
+            fwProtingi << student;
         }
     }
 
@@ -233,8 +227,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     fwKvaili << "-------------------------------------------------------" << "\n";
 
     for (const auto &student : kvaili) {
-        fwKvaili << std::left << std::setw(20) << student.getPavarde() << std::setw(20) << student.getVardas() 
-                 << std::setw(20) << std::setprecision(2) << std::fixed << student.getGalutinis() << "\n";
+        fwKvaili << student;
     }
 
     fwKvaili.close();
