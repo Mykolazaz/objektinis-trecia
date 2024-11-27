@@ -70,4 +70,4 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 
 #### Versija 1.2
 
-Įvedimo ir išvedimo member metodai class'ei Studentas buvo perdengti. Įvedimo metodas pilnai nuskaito duomenų eilutę sugeneruotame faile (vardas, pavardė ir visi gauti įvertinimai). Rankinio įvedimo atveju kai kuriai atvejais išvedimo metodas nepanaudotas dėl skirtingų duomenų reikalavimų. Išvedimo metodas taip pat pritaikytas nebent prašoma išvesti skirtigus duomenis (pvz. prašo vidurkio ir medianos, o programa išveda tik vieną).
+Įvedimo ir išvedimo member metodai class'ei Studentas buvo perdengti. Įvedimo metodas pilnai nuskaito duomenų eilutę sugeneruotame faile (vardas, pavardė ir visi gauti įvertinimai). Kai kuriais atvejais įvedimo metodas rankinio įvedimo metu nepanaudotas dėl skirtingų duomenų reikalavimų. Išvedimo metodas taip pat pritaikytas, nebent prašoma išvesti skirtigus duomenis (pvz. prašo vidurkio ir medianos, o metodas išveda tik vieną).
