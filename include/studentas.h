@@ -35,7 +35,9 @@ public:
         mediana_(0.0), 
         galutinis_(0.0) {}
 
-    ~StudentasClass() = default;
+    ~StudentasClass(){
+        tarpRez_.clear();
+    };
 
     // Get'eriai
     const std::string& getVardas() const { return vardas_; }
