@@ -58,6 +58,8 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 
 ![Lentelėje vaizduojama programos spartos analizė, failai aprodojami pagal 3 strategiją.](./spartos-analize/programos-spartos-analize-3.png)
 
+#### Versija 1.1
+
 ### Struct ir Class veikimo palyginimas
 
 ![Lentelėje vaizduojama lyginamoji programos spartos analizė naudojant struct ir class.](./spartos-analize/programos-spartos-analize-4.png)
@@ -65,3 +67,7 @@ Panaudotos bibliotekos: iostream, vector, sstream, random, algorithm, fstream, i
 ### O1, O2 ir O3 optimizavimo flag'ų palyginimas
 
 ![Lentelėje vaizduojama programos spartos ir naudojamos atminties diske analizė naudojant struct ir class.](./spartos-analize/programos-spartos-analize-5.png)
+
+#### Versija 1.2
+
+Įvedimo ir išvedimo member metodai class'ei Studentas buvo perdengti. Įvedimo metodas pilnai nuskaito duomenų eilutę sugeneruotame faile (vardas, pavardė ir visi gauti įvertinimai). Rankinio įvedimo atveju kai kuriai atvejais išvedimo metodas nepanaudotas dėl skirtingų duomenų reikalavimų. Išvedimo metodas taip pat pritaikytas nebent prašoma išvesti skirtigus duomenis (pvz. prašo vidurkio ir medianos, o programa išveda tik vieną).
