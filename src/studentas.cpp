@@ -247,22 +247,7 @@ void inputScan(std::vector<StudentasClass> &studentai, std::string failoPav) {
         std::istringstream iss(eilute);
         StudentasClass stud;
         
-        std::string vardas, pavarde;
-        iss >> pavarde >> vardas;
-        stud.setPavarde(pavarde);
-        stud.setVardas(vardas);
-
-        std::vector<int> tarpRez;
-        int balas;
-        while (iss >> balas) {
-            tarpRez.push_back(balas);
-        }
-
-        if (!tarpRez.empty()) {
-            stud.setEgzamRez(tarpRez.back());
-            tarpRez.pop_back();
-            stud.setTarpRez(tarpRez);
-        }
+        iss >> stud;
 
         studentai.push_back(stud);
     }
