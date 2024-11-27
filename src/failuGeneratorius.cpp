@@ -87,24 +87,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
         std::istringstream iss(eilute);
         StudentasClass stud;
         
-        std::string vardas, pavarde;
-        iss >> pavarde >> vardas;
-        stud.setPavarde(pavarde);
-        stud.setVardas(vardas);
-
-        std::vector<int> tarpRez;
-        int balas;
-        while (iss >> balas) {
-            tarpRez.push_back(balas);
-        }
-
-        if (!tarpRez.empty()) {
-            stud.setEgzamRez(tarpRez.back());
-            tarpRez.pop_back();
-            stud.setTarpRez(tarpRez);
-        }
-
-        stud.rastiGalutini();
+        iss >> stud;
 
         visiStudentai.push_back(stud);
     }

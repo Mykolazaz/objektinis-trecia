@@ -90,6 +90,19 @@ bool StudentasClass::compare(const StudentasClass& b, int criteria) {
 
 std::istream& operator>>(std::istream& is, StudentasClass& s) {
     is >> s.vardas_ >> s.pavarde_;
+    
+    int balas;
+    while (is >> balas) {
+        s.tarpRez_.push_back(balas);
+    }
+
+    if (!s.tarpRez_.empty()) {
+        s.setEgzamRez(s.tarpRez_.back());
+        s.tarpRez_.pop_back();
+        s.setTarpRez(s.tarpRez_);
+    }
+
+    s.rastiGalutini();
     return is;
 }
 
