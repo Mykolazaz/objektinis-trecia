@@ -39,6 +39,30 @@ public:
         tarpRez_.clear();
     };
 
+    StudentasClass(const StudentasClass& other) :
+        vardas_(other.vardas_),
+        pavarde_(other.pavarde_),
+        tarpRez_(other.tarpRez_),
+        egzamRez_(other.egzamRez_),
+        vidurkis_(other.vidurkis_),
+        mediana_(other.mediana_),
+        galutinis_(other.galutinis_),
+        islaike_(other.islaike_) {}
+
+    StudentasClass& operator=(const StudentasClass& other) {
+        if (this != &other) {  // Apsauga nuo savęs priskyrimo
+            vardas_ = other.vardas_;
+            pavarde_ = other.pavarde_;
+            tarpRez_ = other.tarpRez_;
+            egzamRez_ = other.egzamRez_;
+            vidurkis_ = other.vidurkis_;
+            mediana_ = other.mediana_;
+            galutinis_ = other.galutinis_;
+            islaike_ = other.islaike_;
+        }
+        return *this;
+    }
+
     // Get'eriai
     const std::string& getVardas() const { return vardas_; }
     const std::string& getPavarde() const { return pavarde_; }
