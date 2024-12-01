@@ -227,6 +227,7 @@ void inputSplitSortImpl(std::string failoPav, int rusiavKateg, int testStrat) {
     // b=a;
     // StudentasClass c(b);
     // std::cout << a << "\n" << b << "\n" << c << std::endl;
+    // // Human h;
 }
 
 void inputSplitSort(std::string failoPav, int rusiavKateg, int useVector, int testStrat) {
