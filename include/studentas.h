@@ -3,7 +3,13 @@
 
 #include "lib.h"
 
-class StudentasClass{
+class Human {
+protected:
+    std::string vardas_;
+    std::string pavarde_;
+};
+
+class StudentasClass : public Human{
 private:
     std::string vardas_;
     std::string pavarde_;
