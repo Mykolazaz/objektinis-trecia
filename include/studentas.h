@@ -52,23 +52,25 @@ public:
         vidurkis_(0.0), 
         mediana_(0.0), 
         galutinis_(0.0) {
-            this->setVardas(vardas), 
-            this->setPavarde(pavarde),
+            this->setVardas(vardas);
+            this->setPavarde(pavarde);
         }
 
     ~StudentasClass(){
         tarpRez_.clear();
     };
 
-    StudentasClass(const StudentasClass& other) :
-        vardas_(other.vardas_),
-        pavarde_(other.pavarde_),
-        tarpRez_(other.tarpRez_),
-        egzamRez_(other.egzamRez_),
-        vidurkis_(other.vidurkis_),
-        mediana_(other.mediana_),
-        galutinis_(other.galutinis_),
-        islaike_(other.islaike_) {}
+    // Copy konstruktorius
+    StudentasClass(const StudentasClass& other) : Human() {
+        this->setVardas(other.getVardas());
+        this->setPavarde(other.getPavarde());
+        tarpRez_ = other.tarpRez_;
+        egzamRez_ = other.egzamRez_;
+        vidurkis_ = other.vidurkis_;
+        mediana_ = other.mediana_;
+        galutinis_ = other.galutinis_;
+        islaike_ = other.islaike_;
+    }
 
     StudentasClass& operator=(const StudentasClass& other) {
         if (this != &other) {  // Apsauga nuo savęs priskyrimo
@@ -94,12 +96,13 @@ public:
     double getGalutinis() const { return galutinis_; }
     
     // Set'eriai
-    void setVardas(const std::string& vardas) { vardas_ = vardas; }
-    void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
+    void setVardas(const std::string& vardas) override { vardas_ = vardas; }
+    void setPavarde(const std::string& pavarde) override { pavarde_ = pavarde; }
     void setEgzamRez(int rez) { egzamRez_ = rez; rastiGalutini(); }
+    void setTarpRez(const std::vector<int>& naujiTarpRez);
+
     
     // Metodai
-    void setTarpRez(const std::vector<int>& naujiTarpRez);
     void pridetiTarpRez(int rez);
     void generuotiBalus(int kiekBalu = 15);
     void rastiGalutini(bool naudotiVidurki = true);
