@@ -7,12 +7,22 @@ class Human {
 protected:
     std::string vardas_;
     std::string pavarde_;
+
+public:
+    virtual ~Human() = 0;
+
+    // Visiškai virtualūs metodai
+    virtual void setVardas(const std::string& vardas) = 0;
+    virtual void setPavarde(const std::string& pavarde) = 0;
+
+    virtual const std::string& getVardas() const = 0;
+    virtual const std::string& getPavarde() const = 0;
 };
+
+inline Human::~Human() {}
 
 class StudentasClass : public Human{
 private:
-    std::string vardas_;
-    std::string pavarde_;
     std::vector<int> tarpRez_;
     int egzamRez_;
     double vidurkis_;
