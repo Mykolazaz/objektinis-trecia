@@ -51,7 +51,8 @@ public:
         egzamRez_(0), 
         vidurkis_(0.0), 
         mediana_(0.0), 
-        galutinis_(0.0) {
+        galutinis_(0.0),
+        islaike_(false) {
             this->setVardas(vardas);
             this->setPavarde(pavarde);
         }
