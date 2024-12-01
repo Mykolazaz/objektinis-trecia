@@ -36,20 +36,25 @@ private:
     void rastiRez();
 
 public:
-    // Konstruktoriai
+    // Default konstruktorius
     StudentasClass() : 
+        Human(),
         egzamRez_(0), 
         vidurkis_(0.0), 
         mediana_(0.0), 
-        galutinis_(0.0) {}
+        galutinis_(0.0),
+        islaike_(false) {}
     
+    // Parametrizuotas konstruktorius
     StudentasClass(const std::string& vardas, const std::string& pavarde) : 
-        vardas_(vardas), 
-        pavarde_(pavarde), 
+        Human(), 
         egzamRez_(0), 
         vidurkis_(0.0), 
         mediana_(0.0), 
-        galutinis_(0.0) {}
+        galutinis_(0.0) {
+            this->setVardas(vardas), 
+            this->setPavarde(pavarde),
+        }
 
     ~StudentasClass(){
         tarpRez_.clear();
