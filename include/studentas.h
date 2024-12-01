@@ -72,6 +72,7 @@ public:
         islaike_ = other.islaike_;
     }
 
+    // Copy assignment konstruktorius
     StudentasClass& operator=(const StudentasClass& other) {
         if (this != &other) {  // Apsauga nuo savęs priskyrimo
             vardas_ = other.vardas_;
@@ -87,8 +88,8 @@ public:
     }
 
     // Get'eriai
-    const std::string& getVardas() const { return vardas_; }
-    const std::string& getPavarde() const { return pavarde_; }
+    const std::string& getVardas() const override { return vardas_; }
+    const std::string& getPavarde() const override { return pavarde_; }
     const std::vector<int>& getTarpRez() const { return tarpRez_; }
     int getEgzamRez() const { return egzamRez_; }
     double getVidurkis() const { return vidurkis_; }
@@ -100,17 +101,18 @@ public:
     void setPavarde(const std::string& pavarde) override { pavarde_ = pavarde; }
     void setEgzamRez(int rez) { egzamRez_ = rez; rastiGalutini(); }
     void setTarpRez(const std::vector<int>& naujiTarpRez);
-
     
     // Metodai
     void pridetiTarpRez(int rez);
     void generuotiBalus(int kiekBalu = 15);
     void rastiGalutini(bool naudotiVidurki = true);
+    void isimtiGalutini();
     void clear();
     void rastiIslaike(){ islaike_ = (galutinis_ >= 5.0); }
     bool arIslaike() const { return islaike_; }
     bool compare(const StudentasClass& b, int criteria = 2);
-  
+    std::ostream& printInfo(std::ostream& os) const;
+
     //Friend'ai įvedimo ir išvedimo operacijoms
     friend std::istream& operator>>(std::istream& is, StudentasClass& s);
     friend std::ostream& operator<<(std::ostream& os, const StudentasClass& s);

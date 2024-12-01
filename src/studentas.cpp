@@ -65,6 +65,13 @@ void StudentasClass::rastiGalutini(bool naudotiVidurki) {
     rastiIslaike();
 }
 
+void StudentasClass::isimtiGalutini() {
+    if (!tarpRez_.empty()) {
+        egzamRez_ = tarpRez_.back();
+        tarpRez_.pop_back();
+    }
+}
+
 void StudentasClass::clear() {
     vardas_.clear();
     pavarde_.clear();
@@ -88,28 +95,32 @@ bool StudentasClass::compare(const StudentasClass& b, int criteria) {
     }
 }
 
+std::ostream& StudentasClass::printInfo(std::ostream& os) const {
+        os << std::left << std::setw(20) << pavarde_ << std::setw(20) << vardas_ 
+        << std::setw(20) << std::setprecision(2) << std::fixed << galutinis_ << "\n";
+        return os;
+}
+
 std::istream& operator>>(std::istream& is, StudentasClass& s) {
-    is >> s.vardas_ >> s.pavarde_;
+    std::string vardas, pavarde;
     
+    is >> vardas >> pavarde;
+    s.setVardas(vardas);
+    s.setPavarde(pavarde);
+
     int balas;
     while (is >> balas) {
-        s.tarpRez_.push_back(balas);
+        s.pridetiTarpRez(balas);
     }
 
-    if (!s.tarpRez_.empty()) {
-        s.setEgzamRez(s.tarpRez_.back());
-        s.tarpRez_.pop_back();
-        s.setTarpRez(s.tarpRez_);
-    }
+    s.isimtiGalutini();
 
     s.rastiGalutini();
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const StudentasClass& s) {
-    os << std::left << std::setw(20) << s.pavarde_ << std::setw(20) << s.vardas_ 
-        << std::setw(20) << std::setprecision(2) << std::fixed << s.galutinis_ << "\n";
-    return os;
+    return s.printInfo(os);
 }
 
 // Funkcijos, dirbančios su class'ės Studentas objektas
