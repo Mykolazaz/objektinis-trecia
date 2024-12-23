@@ -1,4 +1,4 @@
-#include "lib.h"
+            #include "lib.h"
 #include "studentas.h"
 
 
@@ -38,7 +38,11 @@ int main(){
         std::cin >> arVektorius;
 
         std::cout << "Kurį failą norite testuoti?" << "\n";
-        system("ls *.txt"); //naudoti 'dir' windows platformai
+        #ifdef _WIN32
+                system("dir *.txt"); // naudoti 'dir' windows platformai
+        #else
+                system("ls *.txt"); // naudoti 'ls' mac ir linux platformoms
+        #endif
 
         std::cout << "Įveskite failo pavadinimą (be '.txt'): " << "\n";
         std::cin >> failoPav;
@@ -59,7 +63,12 @@ int main(){
 
     if (ivedSkait == 1){
         std::cout << "Kurį failą norite apdoroti?" << "\n";
-        system("ls *.txt");
+        #ifdef _WIN32
+                system("dir *.txt"); // naudoti 'dir' windows platformai
+        #else
+                system("ls *.txt"); // naudoti 'ls' mac ir linux platformoms
+        #endif
+
         std::cout << "Įveskite failo pavadinimą (be '.txt'): " << "\n";
         std::cin >> failoPav;
 
