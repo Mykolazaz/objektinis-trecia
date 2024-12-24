@@ -7,6 +7,12 @@
 5. Programos instaliatorius parengtas - spauskite "Next"
 6. Programai įrašyti spauskite "Finish"
 
+### Programos naudojimo instrukcija
+
+1. Pasileiskite jūsų darbalaukyje atsiradusį shortcut'ą ir suteikite administratoriaus teises programai
+2. Įvesdami atitinkamus veiksmus į terminalo aplikaciją, galite naudotis programos funkcionalumais
+3. Pasirinkę vieną iš funkcionalumų (įvedimas ranka/failų generavimas/failų apdorojimas), toliau vadovaukitės pateiktomis instrukcijos į ekraną įvesdami ekrane pateiktas reikšmes pagal poreikį.
+
 ### Programos įrašymo instrukcija su CMAKE
 
 1. Atsisiųsti v1.0 release paketą ir CMAKE 3.25 versiją;
