@@ -1,4 +1,4 @@
-### Programos įrašymo instrukcija su EXE/MSI
+### Programos įrašymo instrukcija su EXE/MSI (v3.0)
 
 1. Du kartus paspauskite ant EXE arba MSI failo;
 2. Sukite su administratoriaus teisių suteikimu;
@@ -7,11 +7,11 @@
 5. Programos instaliatorius parengtas - spauskite "Next";
 6. Programai įrašyti spauskite "Finish".
 
-### Programos naudojimo instrukcija
+### Programos naudojimo instrukcija (v3.0)
 
 1. Pasileiskite jūsų darbalaukyje atsiradusį shortcut'ą ir suteikite administratoriaus teises programai;
 2. Įvesdami atitinkamus veiksmus į terminalo aplikaciją, galite naudotis programos funkcionalumais;
-3. Pasirinkę vieną iš funkcionalumų (įvedimas ranka/failų generavimas/failų apdorojimas), toliau vadovaukitės pateiktomis instrukcijos į ekraną įvesdami ekrane pateiktas reikšmes pagal poreikį.
+3. Pasirinkę vieną iš funkcionalumų (įvedimas ranka - 0/failų generavimas - 1/failų apdorojimas - 2), toliau vadovaukitės pateiktomis instrukcijomis į ekraną įvesdami ekrane pateiktas reikšmes.
 
 ### Programos įrašymo instrukcija su CMAKE
 
