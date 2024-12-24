@@ -1,4 +1,13 @@
-### Programos naudojimo instrukcija
+### Programos įrašymo instrukcija su EXE/MSI
+
+1. Du kartus paspauskite ant EXE arba MSI failo
+2. Sukite su administratoriaus teisių suteikimu
+3. Atsidariusiame lange spauskite "Next"
+4. Sekančiame lange pasirinkite programos įrašymo aplanką ir spauskite "Next"
+5. Programos instaliatorius parengtas - spauskite "Next"
+6. Programai įrašyti spauskite "Finish"
+
+### Programos įrašymo instrukcija su CMAKE
 
 1. Atsisiųsti v1.0 release paketą ir CMAKE 3.25 versiją;
 2. Atsidaryti terminalą ir jame pakeisti dabartinę direktoriją į atsisiųsto (un-zip'into) kodo aplanką ("cd ./objektinis-pirma-obj-4" ar panašiai);
